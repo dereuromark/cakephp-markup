@@ -1,0 +1,33 @@
+{
+	"name": "dereuromark/cakephp-markup",
+	"type": "cakephp-plugin",
+	"description": "CakePHP plugin for markup (parsing and displaying)",
+	"keywords": ["cakephp", "plugin", "markup", "highlighting"],
+	"homepage": "https://github.com/dereuromark/cakephp-markup",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Mark Scherer",
+			"homepage": "http://www.dereuromark.de",
+			"role": "Maintainer"
+		}
+	],
+	"require": {
+		"php": ">=5.4",
+		"cakephp/cakephp": "~3.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Markup\\": "src"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Markup\\Test\\": "tests",
+			"Cake\\Test\\": "vendor/cakephp/cakephp/tests"
+		}
+	},
+	"support": {
+		"source": "https://github.com/dereuromark/cakephp-markup"
+	}
+}
