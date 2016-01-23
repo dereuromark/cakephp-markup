@@ -9,7 +9,7 @@ class JsHighlighter extends Highlighter {
 	 */
 	protected $_defaultConfig = [
 		'escape' => true,
-		'tabsToSpaces' => 4,
+		'tabToSpaces' => 4,
 		'templates' => [
 			'code' => '<pre><code{{attr}}>{{content}}</code></pre>'
 		],

@@ -54,7 +54,20 @@ $key = 'string' . $this->something->do(true); // Some comment
 TEXT;
 
 		$result = $this->Highlighter->highlight($text, ['lang' => 'php']);
-		$expected = '<pre class="lang-php"><code><span style="color: #000000">$key&nbsp;=&nbsp;\'string\'&nbsp;.&nbsp;$this-&gt;something-&gt;do(true);&nbsp;//&nbsp;Some&nbsp;comment</span></code></pre>';
+		$expected = '<pre class="language-php"><code><span style="color: #000000">$key&nbsp;=&nbsp;\'string\'&nbsp;.&nbsp;$this-&gt;something-&gt;do(true);&nbsp;//&nbsp;Some&nbsp;comment</span></code></pre>';
+		$this->assertSame($expected, $result);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testHighlightPrefix() {
+		$text = <<<'TEXT'
+$key = 'string' . $this->something->do(true);
+TEXT;
+
+		$result = $this->Highlighter->highlight($text, ['lang' => 'php', 'prefix' => 'l-']);
+		$expected = '<pre class="l-php"><code><span style="color: #000000">$key&nbsp;=&nbsp;\'string\'&nbsp;.&nbsp;$this-&gt;something-&gt;do(true);</span></code></pre>';
 		$this->assertSame($expected, $result);
 	}
 
@@ -117,13 +130,13 @@ if ($foo) {
 TEXT;
 
 		$result = $this->Highlighter->highlight($text, ['lang' => 'php']);
-		$expected = '<pre class="lang-php"><code><span style="color: #000000">if&nbsp;($foo)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(true)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;doSth();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}</span></code></pre>';
+		$expected = '<pre class="language-php"><code><span style="color: #000000">if&nbsp;($foo)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(true)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;doSth();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}</span></code></pre>';
 		$this->assertEquals($expected, $result);
 
 		$this->Highlighter->config('highlighter', 'Markup\Highlighter\JsHighlighter');
 
 		$result = $this->Highlighter->highlight($text, ['lang' => 'php']);
-		$expected = '<pre class="lang-php"><code><span style="color: #000000">if&nbsp;($foo)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(true)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;doSth();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}</span></code></pre>';
+		$expected = '<pre class="language-php"><code><span style="color: #000000">if&nbsp;($foo)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(true)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;doSth();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}</span></code></pre>';
 		$this->assertSame($expected, $result);
 
 	}

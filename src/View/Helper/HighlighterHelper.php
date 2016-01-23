@@ -19,7 +19,6 @@ class HighlighterHelper extends Helper {
 	protected $_defaultConfig = [
 		'highlighter' => '\Markup\Highlighter\PhpHighlighter',
 		'debug' => null, // Enable caching mode
-		//'autoParse' => false,
 	];
 
 	/**
@@ -38,6 +37,14 @@ class HighlighterHelper extends Helper {
 	}
 
 	/**
+	 * Highlight a string.
+	 *
+	 * Options, depending on the specific highlighter class used:
+	 * - templates
+	 * - escape (defaults to true)
+	 * - tabToSpaces (defaults to 4)
+	 * - prefix (defaults to `language-`)
+	 *
 	 * @param string $text
 	 * @param array $options
 	 * @return string

@@ -10,7 +10,8 @@ class PhpHighlighter extends Highlighter {
 	protected $_defaultConfig = [
 		'templates' => [
 			'code' => '<pre{{attr}}>{{content}}</pre>'
-		]
+		],
+		'prefix' => 'language-'
 	];
 
 	/**
@@ -23,7 +24,7 @@ class PhpHighlighter extends Highlighter {
 
 		$options += $this->_config;
 
-		$attr = ['class' => 'lang-' . $options['lang']];
+		$attr = ['class' => $options['prefix'] . $options['lang']];
 
 		$options['attr'] = $this->templater()->formatAttributes($attr);
 		$options['content'] = str_replace(["\r\n", "\n", "\r"], '', $string);
