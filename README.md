@@ -49,7 +49,7 @@ The output will be automatically escaped (safe) HTML code, e.g. for `php` langua
 ```
 
 #### JsHighlighter
-Using only JS via highlightjs.org this parser is lightweight on the server side.
+Using only JS via [highlightjs.org](https://highlightjs.org/) this parser is lightweight on the server side.
 It requires a CSS and JS file on top to do client-side highlighting "just in time".
 ```php
 // Helper option
@@ -61,6 +61,7 @@ The output for `php` language code will be wrapped in
 <pre><code class="lang-php">...</code></pre>
 ```
 tags, for example.
+Do not forget to add your custom code style CSS file and the JS code [as documented](https://highlightjs.org/usage/).
 
 ### Write your own highlighter
 You just have to implement the `HighlighterInterface` and ideally extend the abstract `Highlighter` class.
