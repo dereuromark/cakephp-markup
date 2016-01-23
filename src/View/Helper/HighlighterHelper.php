@@ -11,7 +11,7 @@ class HighlighterHelper extends Helper {
 	/**
 	 * @var \Markup\Highlighter\HighlighterInterface
 	 */
-	protected $highlighter;
+	protected $_highlighter;
 
 	/**
 	 * @var array
@@ -20,6 +20,11 @@ class HighlighterHelper extends Helper {
 		'highlighter' => '\Markup\Highlighter\PhpHighlighter',
 		'debug' => null, // Enable caching mode
 	];
+
+	/**
+	 * @var float
+	 */
+	protected $_time = 0;
 
 	/**
 	 * Constructor
@@ -50,21 +55,51 @@ class HighlighterHelper extends Helper {
 	 * @return string
 	 */
 	public function highlight($text, array $options = []) {
-		return $this->_getHighlighter()->highlight($text, $options);
+		if ($this->_config['debug']) {
+			$this->_startTimer();
+		}
+		$highlightedText = $this->_getHighlighter()->highlight($text, $options);
+		if ($this->_config['debug']) {
+			$highlightedText .= $this->_timeElapsedFormatted($this->_endTimer());
+		}
+		return $highlightedText;
 	}
 
 	/**
 	 * @return \Markup\Highlighter\HighlighterInterface
 	 */
 	protected function _getHighlighter() {
-		if (isset($this->highlighter)) {
-			return $this->highlighter;
+		if (isset($this->_highlighter)) {
+			return $this->_highlighter;
 		}
 		$className = $this->_config['highlighter'];
 
-		$this->highlighter = new $className($this->_config);
+		$this->_highlighter = new $className($this->_config);
 
-		return $this->highlighter;
+		return $this->_highlighter;
+	}
+
+	/**
+	 * @return void
+	 */
+	protected function _startTimer() {
+		$this->_time = microtime(true);
+	}
+
+	/**
+	 * @return float
+	 */
+	protected function _endTimer() {
+		$now = microtime(true);
+		return $now - $this->_time;
+	}
+
+	/**
+	 * @param $time
+	 * @return string
+	 */
+	protected function _timeElapsedFormatted($time) {
+		return '<!-- ' . number_format($time * 1000, 3) . 'ms -->';
 	}
 
 }
