@@ -51,14 +51,26 @@ class HighlighterHelperTest extends TestCase {
 	public function testHighlight() {
 		$text = <<<'TEXT'
 $key = $this->request->query('key');
-if (is_array($key)) { // Or: if (!is_scalar($key))
-	throw new NotFoundException('Invalid query string'); // Simple 404
-}
-$result = 'string' . $this->request->query('key'); // Dangerous without checking if a stringish (=scalar) value
 TEXT;
 
-		$result = $this->Highlighter->highlight($text, 'php');
-		debug($result);
+		$result = $this->Highlighter->highlight($text, ['lang' => 'php']);
+		$expected = '<pre class="lang-php"><code><span style="color: #000000">$key&nbsp;=&nbsp;$this-&gt;request-&gt;query(\'key\');</span></code></pre>';
+		$this->assertSame($expected, $result);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testHighlightJs() {
+		$text = <<<'TEXT'
+$key = $this->request->query('key');
+TEXT;
+
+		$this->Highlighter->config('highlighter', 'Markup\Highlighter\JsHighlighter');
+
+		$result = $this->Highlighter->highlight($text, ['lang' => 'php']);
+		$expected = '<pre><code class="lang-php">$key = $this-&gt;request-&gt;query(&#039;key&#039;);</code></pre>';
+		$this->assertSame($expected, $result);
 	}
 
 }

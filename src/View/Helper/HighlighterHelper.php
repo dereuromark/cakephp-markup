@@ -18,6 +18,7 @@ class HighlighterHelper extends Helper {
 	 */
 	protected $_defaultConfig = [
 		'autoParse' => false,
+		'highlighter' => '\Markup\Highlighter\PhpHighlighter',
 		'debug' => null, // Enable caching mode
 	];
 
@@ -42,7 +43,7 @@ class HighlighterHelper extends Helper {
 	 * @return string
 	 */
 	public function highlight($text, array $options = []) {
-		return $this->_getHighlighter()->highlight();
+		return $this->_getHighlighter()->highlight($text, $options);
 	}
 
 	/**
@@ -52,7 +53,9 @@ class HighlighterHelper extends Helper {
 		if (isset($this->highlighter)) {
 			return $this->highlighter;
 		}
-		$this->highlighter = new Highlighter($this->_config);
+		$className = $this->_config['highlighter'];
+
+		$this->highlighter = new $className($this->_config);
 
 		return $this->highlighter;
 	}
