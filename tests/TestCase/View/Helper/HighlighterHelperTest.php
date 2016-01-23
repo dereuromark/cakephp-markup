@@ -50,11 +50,11 @@ class HighlighterHelperTest extends TestCase {
 	 */
 	public function testHighlight() {
 		$text = <<<'TEXT'
-$key = $this->request->query('key');
+$key = 'string' . $this->something->do(true); // Some comment
 TEXT;
 
 		$result = $this->Highlighter->highlight($text, ['lang' => 'php']);
-		$expected = '<pre class="lang-php"><code><span style="color: #000000">$key&nbsp;=&nbsp;$this-&gt;request-&gt;query(\'key\');</span></code></pre>';
+		$expected = '<pre class="lang-php"><code><span style="color: #000000">$key&nbsp;=&nbsp;\'string\'&nbsp;.&nbsp;$this-&gt;something-&gt;do(true);&nbsp;//&nbsp;Some&nbsp;comment</span></code></pre>';
 		$this->assertSame($expected, $result);
 	}
 

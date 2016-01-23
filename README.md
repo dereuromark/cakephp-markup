@@ -23,8 +23,6 @@ http://sandbox3.dereuromark.de/sandbox/examples/markup
 
 ## Usage
 
-## Helper Usage
-
 ```php
 // You must load the helper before
 $this->loadHelper('Markup.Highlighter', $optionalConfigArray);
@@ -43,6 +41,13 @@ echo $this->Highlighter->highlight($string, ['lang' => 'php']);
 Using native PHP syntax highlighting this default highlighter does not need any dependencies.
 Just add some basic CSS styling for all `<pre>` tags.
 
+The output will be automatically escaped (safe) HTML code, e.g. for `php` language code:
+```html
+<pre class="lang-php"><code>
+<span style="color: #000000">$key&nbsp;=&nbsp;'string'&nbsp;.&nbsp;$this-&gt;something-&gt;do(true);&nbsp;//&nbsp;Some&nbsp;comment</span>
+</code></pre>
+```
+
 #### JsHighlighter
 Using only JS via highlightjs.org this parser is lightweight on the server side.
 It requires a CSS and JS file on top to do client-side highlighting "just in time".
@@ -50,6 +55,12 @@ It requires a CSS and JS file on top to do client-side highlighting "just in tim
 // Helper option
 'highlighter' => 'Markup\Highlighter\JsHighlighter'
 ```
+
+The output for `php` language code will be wrapped in
+```html
+<pre><code class="lang-php">...</code></pre>
+```
+tags, for example.
 
 ### Write your own highlighter
 You just have to implement the `HighlighterInterface` and ideally extend the abstract `Highlighter` class.
