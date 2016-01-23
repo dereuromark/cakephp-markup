@@ -18,6 +18,9 @@ and
 bin/cake plugin load Markup
 ```
 
+## Demo
+http://sandbox3.dereuromark.de/sandbox/examples/markup
+
 ## Usage
 
 ## Helper Usage
@@ -28,7 +31,7 @@ $this->loadHelper('Markup.Highlighter', $optionalConfigArray);
 
 // In our ctp file we can now highlight some code snippet
 $string = <<<'TEXT'
-$result = 'string' . $this->request->query('key'); // Dangerous without checking if set and a string
+$result = 'string' . $this->request->query('key'); // Some comment
 TEXT;
 
 echo $this->Highlighter->highlight($string, ['lang' => 'php']);
@@ -56,6 +59,15 @@ Then you can simply switch your code highlighting on demand or globally with Con
 	'Highlighter' => [
 		'highlighter' => 'VendorName\PluginName\CustomHighlighter'
 	]
+```
+
+### Additional Configuration
+You can switch the template to use `<div>` instead of `<pre`> for example:
+```php
+// Helper option
+'templates' => [
+	'code' => '<div{{attr}}>{{content}}</div>'
+]
 ```
 
 ## TODO
