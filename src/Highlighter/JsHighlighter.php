@@ -8,8 +8,8 @@ class JsHighlighter extends Highlighter {
 	 * @var array
 	 */
 	protected $_defaultConfig = [
-		'lang' => 'text',
 		'escape' => true,
+		'tabsToSpaces' => 4,
 		'templates' => [
 			'code' => '<pre><code{{attr}}>{{content}}</code></pre>'
 		]
@@ -21,6 +21,8 @@ class JsHighlighter extends Highlighter {
 	 * @return string
 	 */
 	public function highlight($text, array $options = []) {
+		$text = $this->_prepare($text);
+
 		if ($this->_config['escape'] !== false) {
 			$text = h($text);
 		}

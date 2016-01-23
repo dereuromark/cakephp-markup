@@ -15,10 +15,6 @@ abstract class Highlighter implements HighlighterInterface {
 	 * @var array
 	 */
 	protected $_defaultConfig = [
-		'lang' => 'text',
-		'templates' => [
-			'code' => '<pre{{attr}}>{{content}}</pre>'
-		]
 	];
 
 	/**
@@ -26,6 +22,13 @@ abstract class Highlighter implements HighlighterInterface {
 	 */
 	public function __construct(array $config = []) {
 		$this->config($config);
+	}
+
+	protected function _prepare($string) {
+		if ($this->_config['tabsToSpaces']) {
+			$string = preg_replace('/\t/', str_repeat(' ', $this->_config['tabsToSpaces']), $string);
+		}
+		return $string;
 	}
 
 }

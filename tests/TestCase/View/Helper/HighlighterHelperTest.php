@@ -73,4 +73,22 @@ TEXT;
 		$this->assertSame($expected, $result);
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testHighlightIndentation() {
+		$text = <<<'TEXT'
+if ($foo) {
+	while (true) {
+		$this->doSth();
+	}
+}
+TEXT;
+
+		$result = $this->Highlighter->highlight($text, ['lang' => 'php']);
+		$expected = '<pre class="lang-php"><code><span style="color: #000000">if&nbsp;($foo)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(true)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;doSth();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}</span></code></pre>';
+
+		$this->assertEquals($expected, $result);
+	}
+
 }
