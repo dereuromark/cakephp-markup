@@ -21,13 +21,13 @@ class JsHighlighter extends Highlighter {
 	 * @return string
 	 */
 	public function highlight($text, array $options = []) {
+		$options += $this->_config;
+
 		$text = $this->_prepare($text);
 
-		if ($this->_config['escape'] !== false) {
+		if ($options['escape'] !== false) {
 			$text = h($text);
 		}
-
-		$options += $this->_config;
 
 		$attr = ['class' => 'lang-' . $options['lang']];
 

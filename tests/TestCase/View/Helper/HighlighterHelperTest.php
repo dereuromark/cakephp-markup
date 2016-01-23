@@ -76,6 +76,37 @@ TEXT;
 	/**
 	 * @return void
 	 */
+	public function testHighlightJsEscapeFalse() {
+		$text = <<<'TEXT'
+$key = $this->request->query('key');
+TEXT;
+
+		$this->Highlighter->config('highlighter', 'Markup\Highlighter\JsHighlighter');
+		$this->Highlighter->config('escape', false);
+
+		$result = $this->Highlighter->highlight($text, ['lang' => 'php']);
+		$expected = '<pre><code class="lang-php">$key = $this->request->query(\'key\');</code></pre>';
+		$this->assertSame($expected, $result);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testHighlightJsEscapeFalseOption() {
+		$text = <<<'TEXT'
+$key = $this->request->query('key');
+TEXT;
+
+		$this->Highlighter->config('highlighter', 'Markup\Highlighter\JsHighlighter');
+
+		$result = $this->Highlighter->highlight($text, ['lang' => 'php', 'escape' => false]);
+		$expected = '<pre><code class="lang-php">$key = $this->request->query(\'key\');</code></pre>';
+		$this->assertSame($expected, $result);
+	}
+
+	/**
+	 * @return void
+	 */
 	public function testHighlightIndentation() {
 		$text = <<<'TEXT'
 if ($foo) {
@@ -87,8 +118,37 @@ TEXT;
 
 		$result = $this->Highlighter->highlight($text, ['lang' => 'php']);
 		$expected = '<pre class="lang-php"><code><span style="color: #000000">if&nbsp;($foo)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(true)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;doSth();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}</span></code></pre>';
-
 		$this->assertEquals($expected, $result);
+
+		$this->Highlighter->config('highlighter', 'Markup\Highlighter\JsHighlighter');
+
+		$result = $this->Highlighter->highlight($text, ['lang' => 'php']);
+		$expected = '<pre class="lang-php"><code><span style="color: #000000">if&nbsp;($foo)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(true)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;doSth();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}</span></code></pre>';
+		$this->assertSame($expected, $result);
+
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testHighlightJsIndentation() {
+		$text = <<<'TEXT'
+if ($foo) {
+	while (true) {
+		$this->doSth();
+	}
+}
+TEXT;
+
+		$this->Highlighter->config('highlighter', 'Markup\Highlighter\JsHighlighter');
+
+		$result = $this->Highlighter->highlight($text, ['lang' => 'php']);
+		$expected = '<pre><code class="lang-php">if ($foo) {'
+			. "\n" . '    while (true) {'
+			. "\n" . '        $this-&gt;doSth();'
+			. "\n" . '    }'
+			. "\n" . '}</code></pre>';
+		$this->assertTextEquals($expected, $result);
 	}
 
 }

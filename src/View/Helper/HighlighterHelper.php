@@ -17,9 +17,9 @@ class HighlighterHelper extends Helper {
 	 * @var array
 	 */
 	protected $_defaultConfig = [
-		'autoParse' => false,
 		'highlighter' => '\Markup\Highlighter\PhpHighlighter',
 		'debug' => null, // Enable caching mode
+		//'autoParse' => false,
 	];
 
 	/**

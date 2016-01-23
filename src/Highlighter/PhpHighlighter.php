@@ -8,7 +8,6 @@ class PhpHighlighter extends Highlighter {
 	 * @var array
 	 */
 	protected $_defaultConfig = [
-		'tabsToSpaces' => 4,
 		'templates' => [
 			'code' => '<pre{{attr}}>{{content}}</pre>'
 		]
