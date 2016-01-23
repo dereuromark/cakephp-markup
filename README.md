@@ -58,5 +58,9 @@ Then you can simply switch your code highlighting on demand or globally with Con
 	]
 ```
 
+## TODO
+- Add more highlighters (you can also just link your own here)
+- Add markup parsers and possibly View classes (BBCode, Markdown, ...)
+
 ## License
 MIT
