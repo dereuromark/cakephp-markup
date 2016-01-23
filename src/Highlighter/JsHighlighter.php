@@ -12,7 +12,8 @@ class JsHighlighter extends Highlighter {
 		'tabsToSpaces' => 4,
 		'templates' => [
 			'code' => '<pre><code{{attr}}>{{content}}</code></pre>'
-		]
+		],
+		'prefix' => 'language-'
 	];
 
 	/**
@@ -29,7 +30,7 @@ class JsHighlighter extends Highlighter {
 			$text = h($text);
 		}
 
-		$attr = ['class' => 'lang-' . $options['lang']];
+		$attr = ['class' => $options['prefix'] . $options['lang']];
 
 		$options['attr'] = $this->templater()->formatAttributes($attr);
 		$options['content'] = $text;

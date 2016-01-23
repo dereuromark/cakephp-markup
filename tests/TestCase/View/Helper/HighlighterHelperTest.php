@@ -69,7 +69,7 @@ TEXT;
 		$this->Highlighter->config('highlighter', 'Markup\Highlighter\JsHighlighter');
 
 		$result = $this->Highlighter->highlight($text, ['lang' => 'php']);
-		$expected = '<pre><code class="lang-php">$key = $this-&gt;request-&gt;query(&#039;key&#039;);</code></pre>';
+		$expected = '<pre><code class="language-php">$key = $this-&gt;request-&gt;query(&#039;key&#039;);</code></pre>';
 		$this->assertSame($expected, $result);
 	}
 
@@ -85,7 +85,7 @@ TEXT;
 		$this->Highlighter->config('escape', false);
 
 		$result = $this->Highlighter->highlight($text, ['lang' => 'php']);
-		$expected = '<pre><code class="lang-php">$key = $this->request->query(\'key\');</code></pre>';
+		$expected = '<pre><code class="language-php">$key = $this->request->query(\'key\');</code></pre>';
 		$this->assertSame($expected, $result);
 	}
 
@@ -100,7 +100,7 @@ TEXT;
 		$this->Highlighter->config('highlighter', 'Markup\Highlighter\JsHighlighter');
 
 		$result = $this->Highlighter->highlight($text, ['lang' => 'php', 'escape' => false]);
-		$expected = '<pre><code class="lang-php">$key = $this->request->query(\'key\');</code></pre>';
+		$expected = '<pre><code class="language-php">$key = $this->request->query(\'key\');</code></pre>';
 		$this->assertSame($expected, $result);
 	}
 
@@ -143,7 +143,7 @@ TEXT;
 		$this->Highlighter->config('highlighter', 'Markup\Highlighter\JsHighlighter');
 
 		$result = $this->Highlighter->highlight($text, ['lang' => 'php']);
-		$expected = '<pre><code class="lang-php">if ($foo) {'
+		$expected = '<pre><code class="language-php">if ($foo) {'
 			. "\n" . '    while (true) {'
 			. "\n" . '        $this-&gt;doSth();'
 			. "\n" . '    }'
