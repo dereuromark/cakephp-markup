@@ -25,7 +25,7 @@ abstract class Highlighter implements HighlighterInterface {
 	}
 
 	/**
-	 * @param $string
+	 * @param string $string
 	 * @return string
 	 */
 	protected function _prepare($string) {

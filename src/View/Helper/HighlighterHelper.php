@@ -17,6 +17,7 @@ class HighlighterHelper extends Helper {
 	 * @var array
 	 */
 	protected $_defaultConfig = [
+		//'autoParse' => false,
 		'highlighter' => '\Markup\Highlighter\PhpHighlighter',
 		'debug' => null, // Enable caching mode
 	];
@@ -95,7 +96,7 @@ class HighlighterHelper extends Helper {
 	}
 
 	/**
-	 * @param $time
+	 * @param float $time
 	 * @return string
 	 */
 	protected function _timeElapsedFormatted($time) {

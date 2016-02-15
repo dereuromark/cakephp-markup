@@ -15,6 +15,13 @@ class PhpHighlighter extends Highlighter {
 	];
 
 	/**
+	 * Highlight code.
+	 *
+	 * Options:
+	 * - lang
+	 * - prefix
+	 * - templates
+	 *
 	 * @param string $text
 	 * @param array $options
 	 * @return string

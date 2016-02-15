@@ -17,6 +17,14 @@ class JsHighlighter extends Highlighter {
 	];
 
 	/**
+	 * Highlight code.
+	 *
+	 * Options:
+	 * - lang
+	 * - prefix
+	 * - templates
+	 * - escape
+	 *
 	 * @param string $text
 	 * @param array $options
 	 * @return string

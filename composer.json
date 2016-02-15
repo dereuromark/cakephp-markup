@@ -29,5 +29,8 @@
 	},
 	"support": {
 		"source": "https://github.com/dereuromark/cakephp-markup"
+	},
+	"require-dev": {
+		"fig-r/psr2r-sniffer": "dev-master"
 	}
 }
