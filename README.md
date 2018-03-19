@@ -19,7 +19,7 @@ bin/cake plugin load Markup
 ```
 
 ## Demo
-http://sandbox3.dereuromark.de/sandbox/examples/markup
+https://sandbox.dereuromark.de/sandbox/examples/markup
 
 ## Usage
 
@@ -90,6 +90,3 @@ You can switch the template to use `<div>` instead of `<pre`> for example:
 ## TODO
 - Add more highlighters (you can also just link your own here)
 - Add markup parsers and possibly View classes (BBCode, Markdown, ...)
-
-## License
-MIT

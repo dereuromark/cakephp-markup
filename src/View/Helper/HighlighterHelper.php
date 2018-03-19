@@ -25,7 +25,7 @@ class HighlighterHelper extends Helper {
 	/**
 	 * @var float
 	 */
-	protected $_time = 0;
+	protected $_time = 0.0;
 
 	/**
 	 * Constructor

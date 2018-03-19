@@ -1,10 +1,10 @@
 <?php
 namespace Highlighter\Test\TestCase\View\Helper;
 
-use Markup\View\Helper\HighlighterHelper;
 use Cake\Core\Configure;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
+use Markup\View\Helper\HighlighterHelper;
 
 /**
  *
@@ -138,7 +138,6 @@ TEXT;
 		$result = $this->Highlighter->highlight($text, ['lang' => 'php']);
 		$expected = '<pre class="language-php"><code><span style="color: #000000">if&nbsp;($foo)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(true)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;doSth();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}</span></code></pre>';
 		$this->assertSame($expected, $result);
-
 	}
 
 	/**
