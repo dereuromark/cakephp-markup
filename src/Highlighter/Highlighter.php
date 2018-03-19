@@ -7,9 +7,9 @@ use Cake\View\StringTemplateTrait;
 
 abstract class Highlighter implements HighlighterInterface {
 
-	use StringTemplateTrait;
-
 	use InstanceConfigTrait;
+
+	use StringTemplateTrait;
 
 	/**
 	 * @var array

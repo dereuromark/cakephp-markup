@@ -13,24 +13,31 @@
 		}
 	],
 	"require": {
-		"php": ">=5.4",
-		"cakephp/cakephp": "~3.0"
+		"php": ">=5.6",
+		"cakephp/cakephp": "^3.5"
+	},
+	"require-dev": {
+		"fig-r/psr2r-sniffer": "dev-master"
 	},
 	"autoload": {
 		"psr-4": {
-			"Markup\\": "src"
+			"Markup\\": "src/"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Markup\\Test\\": "tests",
-			"Cake\\Test\\": "vendor/cakephp/cakephp/tests"
+			"Markup\\Test\\": "tests/",
+			"Cake\\Test\\": "vendor/cakephp/cakephp/tests/"
 		}
 	},
 	"support": {
 		"source": "https://github.com/dereuromark/cakephp-markup"
 	},
-	"require-dev": {
-		"fig-r/psr2r-sniffer": "dev-master"
+	"scripts": {
+		"test": "php phpunit.phar",
+		"test-setup": "[ ! -f phpunit.phar ] && wget https://phar.phpunit.de/phpunit-5.7.20.phar && mv phpunit-5.7.20.phar phpunit.phar || true",
+		"test-coverage": "php phpunit.phar --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage --coverage-clover tmp/coverage/coverage.xml",
+		"cs-check": "phpcs -p --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/cakephp-markup/vendor/,/tmp/,/logs/ --extensions=php ./",
+		"cs-fix": "phpcbf --standard=vendor/fig-r/psr2r-sniffer/PSR2R/ruleset.xml --ignore=/cakephp-markup/vendor/,/tmp/,/logs/ --extensions=php ./"
 	}
 }
