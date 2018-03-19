@@ -13,8 +13,8 @@
 
 	<!-- Add any additional test suites you want to run here -->
 	<testsuites>
-		<testsuite name="Markup Test Suite">
-			<directory>./tests/TestCase</directory>
+		<testsuite name="markup">
+			<directory>tests/TestCase/</directory>
 		</testsuite>
 		<!-- Add plugin test suites here. -->
 	</testsuites>
@@ -32,7 +32,7 @@
 
 	<filter>
 		<whitelist>
-			<directory suffix=".php">./src</directory>
+			<directory suffix=".php">src/</directory>
 		</whitelist>
 	</filter>
 

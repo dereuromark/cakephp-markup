@@ -29,7 +29,7 @@ class HighlighterHelperTest extends TestCase {
 			]
 		);
 
-		$this->request = $this->getMock('Cake\Network\Request', []);
+		$this->request = $this->getMockBuilder('Cake\Network\Request')->getMock();
 		$this->view = new View($this->request);
 		$this->Highlighter = new HighlighterHelper($this->view);
 	}
