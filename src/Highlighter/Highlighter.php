@@ -21,7 +21,7 @@ abstract class Highlighter implements HighlighterInterface {
 	 * @param array $config
 	 */
 	public function __construct(array $config = []) {
-		$this->config($config);
+		$this->setConfig($config);
 	}
 
 	/**
