@@ -2,13 +2,11 @@
 namespace Highlighter\Test\TestCase\View\Helper;
 
 use Cake\Core\Configure;
+use Cake\Http\ServerRequest;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
 use Markup\View\Helper\HighlighterHelper;
 
-/**
- *
- */
 class HighlighterHelperTest extends TestCase {
 
 	/**
@@ -29,7 +27,7 @@ class HighlighterHelperTest extends TestCase {
 			]
 		);
 
-		$this->request = $this->getMockBuilder('Cake\Network\Request')->getMock();
+		$this->request = $this->getMockBuilder(ServerRequest::class)->getMock();
 		$this->view = new View($this->request);
 		$this->Highlighter = new HighlighterHelper($this->view);
 	}
@@ -79,7 +77,7 @@ TEXT;
 $key = $this->request->query('key');
 TEXT;
 
-		$this->Highlighter->config('highlighter', 'Markup\Highlighter\JsHighlighter');
+		$this->Highlighter->setConfig('highlighter', 'Markup\Highlighter\JsHighlighter');
 
 		$result = $this->Highlighter->highlight($text, ['lang' => 'php']);
 		$expected = '<pre><code class="language-php">$key = $this-&gt;request-&gt;query(&#039;key&#039;);</code></pre>';
@@ -94,8 +92,8 @@ TEXT;
 $key = $this->request->query('key');
 TEXT;
 
-		$this->Highlighter->config('highlighter', 'Markup\Highlighter\JsHighlighter');
-		$this->Highlighter->config('escape', false);
+		$this->Highlighter->setConfig('highlighter', 'Markup\Highlighter\JsHighlighter');
+		$this->Highlighter->setConfig('escape', false);
 
 		$result = $this->Highlighter->highlight($text, ['lang' => 'php']);
 		$expected = '<pre><code class="language-php">$key = $this->request->query(\'key\');</code></pre>';
@@ -110,7 +108,7 @@ TEXT;
 $key = $this->request->query('key');
 TEXT;
 
-		$this->Highlighter->config('highlighter', 'Markup\Highlighter\JsHighlighter');
+		$this->Highlighter->setConfig('highlighter', 'Markup\Highlighter\JsHighlighter');
 
 		$result = $this->Highlighter->highlight($text, ['lang' => 'php', 'escape' => false]);
 		$expected = '<pre><code class="language-php">$key = $this->request->query(\'key\');</code></pre>';
@@ -133,7 +131,7 @@ TEXT;
 		$expected = '<pre class="language-php"><code><span style="color: #000000">if&nbsp;($foo)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(true)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;doSth();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}</span></code></pre>';
 		$this->assertEquals($expected, $result);
 
-		$this->Highlighter->config('highlighter', 'Markup\Highlighter\JsHighlighter');
+		$this->Highlighter->setConfig('highlighter', 'Markup\Highlighter\JsHighlighter');
 
 		$result = $this->Highlighter->highlight($text, ['lang' => 'php']);
 		$expected = '<pre class="language-php"><code><span style="color: #000000">if&nbsp;($foo)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(true)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;doSth();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}</span></code></pre>';
@@ -152,7 +150,7 @@ if ($foo) {
 }
 TEXT;
 
-		$this->Highlighter->config('highlighter', 'Markup\Highlighter\JsHighlighter');
+		$this->Highlighter->setConfig('highlighter', 'Markup\Highlighter\JsHighlighter');
 
 		$result = $this->Highlighter->highlight($text, ['lang' => 'php']);
 		$expected = '<pre><code class="language-php">if ($foo) {'
@@ -192,7 +190,7 @@ hello world
 2. two thing `i can write code`, and `more` wipee!
 TEXT;
 
-		$this->Highlighter->config('debug', true);
+		$this->Highlighter->setConfig('debug', true);
 
 		$result = $this->Highlighter->highlight($text, ['lang' => 'markdown']);
 		$expected = '<!-- ';
