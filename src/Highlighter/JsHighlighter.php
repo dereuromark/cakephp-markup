@@ -11,9 +11,9 @@ class JsHighlighter extends Highlighter {
 		'escape' => true,
 		'tabToSpaces' => 4,
 		'templates' => [
-			'code' => '<pre><code{{attr}}>{{content}}</code></pre>'
+			'code' => '<pre><code{{attr}}>{{content}}</code></pre>',
 		],
-		'prefix' => 'language-'
+		'prefix' => 'language-',
 	];
 
 	/**

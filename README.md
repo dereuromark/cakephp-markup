@@ -6,8 +6,10 @@
 [![Total Downloads](https://poser.pugx.org/dereuromark/cakephp-markup/d/total.svg)](https://packagist.org/packages/dereuromark/cakephp-markup)
 [![Coding Standards](https://img.shields.io/badge/cs-PSR--2--R-yellow.svg)](https://github.com/php-fig-rectified/fig-rectified-standards)
 
-A CakePHP 3.x plugin to
+A CakePHP plugin to
 - easily use code syntax highlighters.
+
+This branch is for **CakePHP 3.6+**.
 
 ## Setup
 ```
@@ -53,7 +55,7 @@ Using only JS via [highlightjs.org](https://highlightjs.org/) or [prismjs.com](h
 It requires a CSS and JS file on top to do client-side highlighting "just in time".
 ```php
 // Helper option
-'highlighter' => 'Markup\Highlighter\JsHighlighter'
+'highlighter' => 'Markup\Highlighter\JsHighlighter',
 ```
 
 The output for `php` language code will be wrapped in
@@ -67,10 +69,10 @@ Do not forget to add your custom code style CSS file and the JS code as document
 You just have to implement the `HighlighterInterface` and ideally extend the abstract `Highlighter` class.
 Then you can simply switch your code highlighting on demand or globally with Configure:
 ```php
-	// Configure
-	'Highlighter' => [
-		'highlighter' => 'VendorName\PluginName\CustomHighlighter'
-	]
+// Configure
+'Highlighter' => [
+    'highlighter' => 'VendorName\PluginName\CustomHighlighter',
+],
 ```
 
 You should be able to easily use any custom highlighter this way.
@@ -83,8 +85,8 @@ You can switch the template to use `<div>` instead of `<pre`> for example:
 ```php
 // Helper option
 'templates' => [
-	'code' => '<div{{attr}}>{{content}}</div>'
-]
+    'code' => '<div{{attr}}>{{content}}</div>',
+],
 ```
 
 ## TODO

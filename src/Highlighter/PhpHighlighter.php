@@ -9,9 +9,9 @@ class PhpHighlighter extends Highlighter {
 	 */
 	protected $_defaultConfig = [
 		'templates' => [
-			'code' => '<pre{{attr}}>{{content}}</pre>'
+			'code' => '<pre{{attr}}>{{content}}</pre>',
 		],
-		'prefix' => 'language-'
+		'prefix' => 'language-',
 	];
 
 	/**
