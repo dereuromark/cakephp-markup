@@ -1,4 +1,5 @@
 <?php
+
 namespace Highlighter\Test\TestCase\View\Helper;
 
 use Cake\Core\Configure;
