@@ -9,7 +9,7 @@
 A CakePHP plugin to
 - easily use code syntax highlighters.
 
-This branch is for **CakePHP 3.6+**.
+This branch is for **CakePHP 3.6+**. See [version map](https://github.com/dereuromark/cakephp-markup/wiki#cakephp-version-map) for details.
 
 ## Setup
 ```
