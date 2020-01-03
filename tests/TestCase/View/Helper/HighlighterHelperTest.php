@@ -25,7 +25,7 @@ class HighlighterHelperTest extends TestCase {
 	 *
 	 * @return void
 	 */
-	public function setUp() {
+	public function setUp(): void {
 		parent::setUp();
 
 		Configure::write('Highlighter', [
@@ -43,7 +43,7 @@ class HighlighterHelperTest extends TestCase {
 	 *
 	 * @return void
 	 */
-	public function tearDown() {
+	public function tearDown(): void {
 		parent::tearDown();
 
 		unset($this->helper);
@@ -200,9 +200,9 @@ TEXT;
 
 		$result = $this->helper->highlight($text, ['lang' => 'markdown']);
 		$expected = '<!-- ';
-		$this->assertContains($expected, $result);
+		$this->assertStringContainsString($expected, $result);
 		$expected = 'ms -->';
-		$this->assertContains($expected, $result);
+		$this->assertStringContainsString($expected, $result);
 	}
 
 }

@@ -26,7 +26,7 @@ class PhpHighlighter extends Highlighter {
 	 * @param array $options
 	 * @return string
 	 */
-	public function highlight($text, array $options = []) {
+	public function highlight(string $text, array $options = []): string {
 		$string = highlight_string($text, true);
 
 		$options += $this->_config;

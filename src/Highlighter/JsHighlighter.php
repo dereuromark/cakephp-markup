@@ -29,7 +29,7 @@ class JsHighlighter extends Highlighter {
 	 * @param array $options
 	 * @return string
 	 */
-	public function highlight($text, array $options = []) {
+	public function highlight(string $text, array $options = []): string {
 		$options += $this->_config;
 
 		$text = $this->_prepare($text);

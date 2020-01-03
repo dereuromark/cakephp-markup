@@ -55,7 +55,7 @@ class HighlighterHelper extends Helper {
 	 * @param array $options
 	 * @return string
 	 */
-	public function highlight($text, array $options = []) {
+	public function highlight(string $text, array $options = []): string {
 		if ($this->_config['debug']) {
 			$this->_startTimer();
 		}

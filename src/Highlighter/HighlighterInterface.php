@@ -16,6 +16,6 @@ interface HighlighterInterface {
 	 * @param array $options
 	 * @return string
 	 */
-	public function highlight($text, array $options = []);
+	public function highlight(string $text, array $options = []): string;
 
 }
