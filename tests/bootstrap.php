@@ -16,7 +16,8 @@ if (!is_dir(TMP)) {
 	mkdir(TMP, 0770, true);
 }
 
-define('CONFIG', dirname(__FILE__) . DS . 'config' . DS);
+define('TESTS', ROOT . DS . 'tests' . DS);
+define('CONFIG', TESTS . 'config' . DS);
 define('LOGS', TMP . 'logs' . DS);
 define('CACHE', TMP . 'cache' . DS);
 
@@ -54,7 +55,7 @@ $cache = [
 Cake\Cache\Cache::setConfig($cache);
 
 if (file_exists(CONFIG . 'app_local.php')) {
-	\Cake\Core\Configure::load('app_local', 'default');
+	Cake\Core\Configure::load('app_local', 'default');
 }
 
 // Ensure default test connection is defined
@@ -65,11 +66,11 @@ if (!getenv('db_class')) {
 
 Cake\Datasource\ConnectionManager::setConfig('test', [
 	'className' => 'Cake\Database\Connection',
-	'driver' => getenv('db_class'),
-	'dsn' => getenv('db_dsn'),
-	'database' => getenv('db_database'),
-	'username' => getenv('db_username'),
-	'password' => getenv('db_password'),
+	'driver' => getenv('db_class') ?: null,
+	'dsn' => getenv('db_dsn') ?: null,
+	//'database' => getenv('db_database'),
+	//'username' => getenv('db_username'),
+	//'password' => getenv('db_password'),
 	'timezone' => 'UTC',
 	'quoteIdentifiers' => true,
 	'cacheMetadata' => true,
