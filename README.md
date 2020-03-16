@@ -21,7 +21,7 @@ bin/cake plugin load Markup
 ```
 
 ## Demo
-https://sandbox.dereuromark.de/sandbox/examples/markup
+https://sandbox.dereuromark.de/sandbox/markup-examples
 
 ## Usage
 
