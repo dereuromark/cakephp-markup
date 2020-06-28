@@ -63,6 +63,7 @@ class HighlighterHelper extends Helper {
 		if ($this->_config['debug']) {
 			$highlightedText .= $this->_timeElapsedFormatted($this->_endTimer());
 		}
+
 		return $highlightedText;
 	}
 
@@ -92,6 +93,7 @@ class HighlighterHelper extends Helper {
 	 */
 	protected function _endTimer() {
 		$now = microtime(true);
+
 		return $now - $this->_time;
 	}
 
