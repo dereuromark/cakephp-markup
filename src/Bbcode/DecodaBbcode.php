@@ -16,7 +16,7 @@ use Decoda\Filter\UrlFilter;
 use Decoda\Filter\VideoFilter;
 use Decoda\Hook\CensorHook;
 use Decoda\Hook\ClickableHook;
-use Markup\Bbcode\Filter\VideoFilter as MediaEmbedVideoFilter;
+use Markup\Bbcode\Decoda\VideoFilter as MediaEmbedVideoFilter;
 use MediaEmbed\MediaEmbed;
 
 class DecodaBbcode implements BbcodeInterface {

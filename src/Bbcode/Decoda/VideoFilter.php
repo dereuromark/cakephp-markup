@@ -1,6 +1,6 @@
 <?php
 
-namespace Markup\Bbcode\Filter;
+namespace Markup\Bbcode\Decoda;
 
 use Decoda\Decoda;
 use Decoda\Filter\AbstractFilter;
