@@ -12,6 +12,7 @@ class PhpHighlighter extends Highlighter {
 			'code' => '<pre{{attr}}>{{content}}</pre>',
 		],
 		'prefix' => 'language-',
+		'lang' => 'txt',
 	];
 
 	/**

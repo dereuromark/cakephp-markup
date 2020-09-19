@@ -29,14 +29,6 @@ class CommonMarkMarkdown implements MarkdownInterface {
 	}
 
 	/**
-	 * @param string $string
-	 * @return string
-	 */
-	protected function _prepare($string) {
-		return $string;
-	}
-
-	/**
 	 * @param string $text
 	 * @param array $options
 	 *

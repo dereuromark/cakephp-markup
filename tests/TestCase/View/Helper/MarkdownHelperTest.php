@@ -62,4 +62,21 @@ TEXT;
 		$this->assertSame($expected, $result);
 	}
 
+	/**
+	 * @return void
+	 */
+	public function testConvertDebug() {
+		$this->helper->setConfig('debug', true);
+
+		$text = <<<'TEXT'
+Some **bold** text.
+TEXT;
+
+		$result = $this->helper->convert($text);
+		$expected = '<!-- ';
+		$this->assertStringContainsString($expected, $result);
+		$expected = 'ms -->';
+		$this->assertStringContainsString($expected, $result);
+	}
+
 }
