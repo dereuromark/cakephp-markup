@@ -65,6 +65,41 @@ TEXT;
 	/**
 	 * @return void
 	 */
+	public function testConvertAbbr() {
+		$text = <<<'TEXT'
+Some [abbr="National Aeronautics and Space Administration"]NASA[/abbr].
+TEXT;
+
+		$result = $this->helper->convert($text);
+		$expected = 'Some <abbr title="National Aeronautics and Space Administration">NASA</abbr>.';
+		$this->assertSame($expected, $result);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testConvertQuote() {
+		$text = <<<'TEXT'
+Some [quote]quoted[/quote] text.
+TEXT;
+
+		$result = $this->helper->convert($text);
+		// 'Some <blockquote class="decoda-quote">        <div class="decoda-quote-body">        quoted    </div></blockquote> text.';
+		$expected = [
+			'Some',
+			'blockquote' => ['class' => 'decoda-quote'],
+			'div' => ['class' => 'decoda-quote-body'],
+			'quoted',
+			'/div',
+			'/blockquote',
+			'text.'
+		];
+		$this->assertHtml($expected, $result);
+	}
+
+	/**
+	 * @return void
+	 */
 	public function testConvertDebug() {
 		$this->helper->setConfig('debug', true);
 

@@ -10,6 +10,7 @@ use Decoda\Filter\DefaultFilter;
 use Decoda\Filter\EmailFilter;
 use Decoda\Filter\ImageFilter;
 use Decoda\Filter\ListFilter;
+use Decoda\Filter\QuoteFilter;
 use Decoda\Filter\TableFilter;
 use Decoda\Filter\TextFilter;
 use Decoda\Filter\UrlFilter;
@@ -48,23 +49,26 @@ class DecodaBbcode implements BbcodeInterface {
 	 * @return string
 	 */
 	public function convert(string $text, array $options = []): string {
-		$options += ['escape' => true];
-		if ($options['escape']) {
-			$text = (string)h($text);
-		}
+		$options += [
+			'escape' => true,
+		];
 
-		$converter = $this->converter($text);
+		$converterOptions = [
+			'escapeHtml' => $options['escape'],
+		];
+		$converter = $this->converter($text, $converterOptions);
 
 		return $converter->parse();
 	}
 
 	/**
 	 * @param string $text
+	 * @param array $options
+	 *
 	 * @return \Decoda\Decoda
 	 */
-	protected function converter(string $text): Decoda {
-		$options = [
-			'escapeHtml' => false,
+	protected function converter(string $text, array $options = []): Decoda {
+		$options += [
 		];
 
 		$this->converter = new Decoda($text, $options);
@@ -83,6 +87,7 @@ class DecodaBbcode implements BbcodeInterface {
 		} else {
 			$this->converter->addFilter(new VideoFilter());
 		}
+		$this->converter->addFilter(new QuoteFilter());
 
 		$this->converter->addHook(new CensorHook());
 		$this->converter->addHook(new ClickableHook());
