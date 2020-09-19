@@ -35,32 +35,41 @@ class CommonMarkMarkdown implements MarkdownInterface {
 	 * @return string
 	 */
 	public function convert(string $text, array $options = []): string {
-		$converter = $this->converter();
-
-		$options += ['escape' => true];
-		if ($options['escape']) {
-			$text = (string)h($text);
-		}
+		$converter = $this->converter($options);
 
 		return $converter->convertToHtml($text);
 	}
 
 	/**
+	 * @param array $options
+	 *
 	 * @return \League\CommonMark\CommonMarkConverter
 	 */
-	protected function converter(): CommonMarkConverter {
+	protected function converter(array $options = []): CommonMarkConverter {
 		if ($this->converter === null) {
-			$this->converter = static::defaultConverter();
+			$this->converter = static::defaultConverter($options);
 		}
 
 		return $this->converter;
 	}
 
 	/**
+	 * @param array $options
+	 *
 	 * @return \League\CommonMark\CommonMarkConverter
 	 */
-	public static function defaultConverter(): CommonMarkConverter {
+	public static function defaultConverter(array $options = []): CommonMarkConverter {
 		$environment = Environment::createGFMEnvironment();
+
+		$options += [
+			'escape' => true
+		];
+
+		if ($options['escape']) {
+			$environment->mergeConfig([
+				'html_input' => Environment::HTML_INPUT_ESCAPE,
+			]);
+		}
 
 		return new CommonMarkConverter([], $environment);
 	}

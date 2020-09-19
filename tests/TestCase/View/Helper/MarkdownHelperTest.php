@@ -65,6 +65,32 @@ TEXT;
 	/**
 	 * @return void
 	 */
+	public function testConvertQuote() {
+		$text = <<<'TEXT'
+Some
+
+> quoted <b>text</b>
+>
+> -- Benjamin Franklin
+
+text.
+TEXT;
+
+		$result = $this->helper->convert($text);
+		$expected = <<<TXT
+<p>Some</p>
+<blockquote>
+<p>quoted &lt;b&gt;text&lt;/b&gt;</p>
+<p>-- Benjamin Franklin</p>
+</blockquote>
+<p>text.</p>
+TXT;
+		$this->assertSame($expected, $result);
+	}
+
+	/**
+	 * @return void
+	 */
 	public function testConvertDebug() {
 		$this->helper->setConfig('debug', true);
 

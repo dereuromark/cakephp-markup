@@ -56,7 +56,7 @@ Foo bar.
 TEXT;
 
 		$result = $this->bbcode->convert($text);
-		$expected = '<h1>Header</h1><br><br>My <b>bold</b> text with <pre class="decoda-code"><code>code</code></pre> and more &quot;&lt;b&gt;demo&lt;/b&gt;&quot;.'
+		$expected = '<h1>Header</h1><br><br>My <b>bold</b> text with <pre class="decoda-code"><code>code</code></pre> and more "&lt;b&gt;demo&lt;/b&gt;".'
 			. '<br><br>A paragraph with links and <abbr>yyy</abbr>.<br><br><br>Another paragraph.<br><br>'
 			. '<h2>Header 2</h2><br><br>Foo bar.';
 		$this->assertSame($expected, $result);
