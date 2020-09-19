@@ -1,3 +1,5 @@
 parameters:
-    autoload_files:
-        - bootstrap.php
+	level: 8
+	bootstrapFiles:
+		- bootstrap.php
+	checkMissingIterableValueType: false

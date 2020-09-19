@@ -5,20 +5,20 @@ namespace Markup\View\Helper;
 use Cake\Core\Configure;
 use Cake\View\Helper;
 use Cake\View\View;
-use Markup\Highlighter\PhpHighlighter;
+use Markup\Bbcode\DecodaBbcode;
 
-class HighlighterHelper extends Helper {
+class BbcodeHelper extends Helper {
 
 	/**
-	 * @var \Markup\Highlighter\HighlighterInterface
+	 * @var \Markup\Bbcode\BbcodeInterface
 	 */
-	protected $_highlighter;
+	protected $_converter;
 
 	/**
 	 * @var array
 	 */
 	protected $_defaultConfig = [
-		'highlighter' => PhpHighlighter::class,
+		'converter' => DecodaBbcode::class,
 		'debug' => null, // Enable debug display
 	];
 
@@ -34,7 +34,7 @@ class HighlighterHelper extends Helper {
 	 * @param array $config Configuration settings for the helper.
 	 */
 	public function __construct(View $View, array $config = []) {
-		$defaults = (array)Configure::read('Highlighter');
+		$defaults = (array)Configure::read('Bbcode');
 		parent::__construct($View, $config + $defaults);
 
 		if ($this->_config['debug'] === null) {
@@ -55,30 +55,30 @@ class HighlighterHelper extends Helper {
 	 * @param array $options
 	 * @return string
 	 */
-	public function highlight(string $text, array $options = []): string {
+	public function convert(string $text, array $options = []): string {
 		if ($this->_config['debug']) {
 			$this->_startTimer();
 		}
-		$highlightedText = $this->_getHighlighter()->highlight($text, $options);
+		$html = $this->_getConverter()->convert($text, $options);
 		if ($this->_config['debug']) {
-			$highlightedText .= $this->_timeElapsedFormatted($this->_endTimer());
+			$html .= $this->_timeElapsedFormatted($this->_endTimer());
 		}
 
-		return $highlightedText;
+		return $html;
 	}
 
 	/**
-	 * @return \Markup\Highlighter\HighlighterInterface
+	 * @return \Markup\Bbcode\BbcodeInterface
 	 */
-	protected function _getHighlighter() {
-		if (isset($this->_highlighter)) {
-			return $this->_highlighter;
+	protected function _getConverter() {
+		if (isset($this->_converter)) {
+			return $this->_converter;
 		}
-		$className = $this->_config['highlighter'];
+		$className = $this->_config['converter'];
 
-		$this->_highlighter = new $className($this->_config);
+		$this->_converter = new $className($this->_config);
 
-		return $this->_highlighter;
+		return $this->_converter;
 	}
 
 	/**

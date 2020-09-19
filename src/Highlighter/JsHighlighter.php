@@ -14,6 +14,7 @@ class JsHighlighter extends Highlighter {
 			'code' => '<pre><code{{attr}}>{{content}}</code></pre>',
 		],
 		'prefix' => 'language-',
+		'lang' => 'txt',
 	];
 
 	/**
