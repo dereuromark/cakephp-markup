@@ -5,12 +5,12 @@ namespace Markup\View\Helper;
 use Cake\Core\Configure;
 use Cake\View\Helper;
 use Cake\View\View;
-use Markup\Markdown\CommonMarkMarkdown;
+use Markup\Bbcode\DecodaBbcode;
 
-class MarkdownHelper extends Helper {
+class BbcodeHelper extends Helper {
 
 	/**
-	 * @var \Markup\Markdown\MarkdownInterface
+	 * @var \Markup\Bbcode\BbcodeInterface
 	 */
 	protected $_converter;
 
@@ -18,7 +18,7 @@ class MarkdownHelper extends Helper {
 	 * @var array
 	 */
 	protected $_defaultConfig = [
-		'converter' => CommonMarkMarkdown::class,
+		'converter' => DecodaBbcode::class,
 		'debug' => null, // Enable debug display
 	];
 
@@ -34,7 +34,7 @@ class MarkdownHelper extends Helper {
 	 * @param array $config Configuration settings for the helper.
 	 */
 	public function __construct(View $View, array $config = []) {
-		$defaults = (array)Configure::read('Markdown');
+		$defaults = (array)Configure::read('Bbcode');
 		parent::__construct($View, $config + $defaults);
 
 		if ($this->_config['debug'] === null) {
@@ -64,11 +64,11 @@ class MarkdownHelper extends Helper {
 			$html .= $this->_timeElapsedFormatted($this->_endTimer());
 		}
 
-		return trim($html);
+		return $html;
 	}
 
 	/**
-	 * @return \Markup\Markdown\MarkdownInterface
+	 * @return \Markup\Bbcode\BbcodeInterface
 	 */
 	protected function _getConverter() {
 		if (isset($this->_converter)) {

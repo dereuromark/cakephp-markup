@@ -1,6 +1,6 @@
 <?php
 
-namespace Highlighter\Test\TestCase\Bbcode;
+namespace Markup\Test\TestCase\Bbcode;
 
 use Cake\Core\Configure;
 use Cake\TestSuite\TestCase;

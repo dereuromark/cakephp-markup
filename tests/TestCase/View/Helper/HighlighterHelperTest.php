@@ -1,6 +1,6 @@
 <?php
 
-namespace Highlighter\Test\TestCase\View\Helper;
+namespace Markup\Test\TestCase\View\Helper;
 
 use Cake\Core\Configure;
 use Cake\Http\ServerRequest;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Highlighter\Test\TestCase\Markdown;
+namespace Markup\Test\TestCase\Markdown;
 
 use Cake\Core\Configure;
 use Cake\TestSuite\TestCase;
