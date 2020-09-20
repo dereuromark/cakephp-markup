@@ -92,7 +92,7 @@ TEXT;
 			'quoted',
 			'/div',
 			'/blockquote',
-			'text.'
+			'text.',
 		];
 		$this->assertHtml($expected, $result);
 	}

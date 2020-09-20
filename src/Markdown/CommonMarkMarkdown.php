@@ -62,7 +62,7 @@ class CommonMarkMarkdown implements MarkdownInterface {
 		$environment = Environment::createGFMEnvironment();
 
 		$options += [
-			'escape' => true
+			'escape' => true,
 		];
 
 		if ($options['escape']) {
