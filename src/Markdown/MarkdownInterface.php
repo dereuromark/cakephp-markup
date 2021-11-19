@@ -11,7 +11,7 @@ interface MarkdownInterface {
 	 * - escape
 	 *
 	 * @param string $text
-	 * @param array $options
+	 * @param array<string, mixed> $options
 	 * @return string
 	 */
 	public function convert(string $text, array $options = []): string;

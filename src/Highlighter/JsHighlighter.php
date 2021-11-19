@@ -5,7 +5,7 @@ namespace Markup\Highlighter;
 class JsHighlighter extends Highlighter {
 
 	/**
-	 * @var array
+	 * @var array<string, mixed>
 	 */
 	protected $_defaultConfig = [
 		'escape' => true,
@@ -27,7 +27,7 @@ class JsHighlighter extends Highlighter {
 	 * - escape
 	 *
 	 * @param string $text
-	 * @param array $options
+	 * @param array<string, mixed> $options
 	 * @return string
 	 */
 	public function highlight(string $text, array $options = []): string {

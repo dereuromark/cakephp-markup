@@ -21,8 +21,7 @@ class CommonMarkMarkdownTest extends TestCase {
 
 		Configure::write('Markdown', [
 				'debug' => false,
-			]
-		);
+			]);
 
 		$this->markdown = new CommonMarkMarkdown();
 	}

@@ -12,13 +12,13 @@ abstract class Highlighter implements HighlighterInterface {
 	use StringTemplateTrait;
 
 	/**
-	 * @var array
+	 * @var array<string, mixed>
 	 */
 	protected $_defaultConfig = [
 	];
 
 	/**
-	 * @param array $config
+	 * @param array<string, mixed> $config
 	 */
 	public function __construct(array $config = []) {
 		$this->setConfig($config);

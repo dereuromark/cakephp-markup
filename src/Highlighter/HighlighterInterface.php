@@ -13,7 +13,7 @@ interface HighlighterInterface {
 	 * - templates
 	 *
 	 * @param string $text
-	 * @param array $options
+	 * @param array<string, mixed> $options
 	 * @return string
 	 */
 	public function highlight(string $text, array $options = []): string;

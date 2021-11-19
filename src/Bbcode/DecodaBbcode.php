@@ -30,13 +30,13 @@ class DecodaBbcode implements BbcodeInterface {
 	protected $converter;
 
 	/**
-	 * @var array
+	 * @var array<string, mixed>
 	 */
 	protected $_defaultConfig = [
 	];
 
 	/**
-	 * @param array $config
+	 * @param array<string, mixed> $config
 	 */
 	public function __construct(array $config = []) {
 		$this->setConfig($config);
@@ -44,7 +44,7 @@ class DecodaBbcode implements BbcodeInterface {
 
 	/**
 	 * @param string $text
-	 * @param array $options
+	 * @param array<string, mixed> $options
 	 *
 	 * @return string
 	 */
@@ -63,7 +63,7 @@ class DecodaBbcode implements BbcodeInterface {
 
 	/**
 	 * @param string $text
-	 * @param array $options
+	 * @param array<string, mixed> $options
 	 *
 	 * @return \Decoda\Decoda
 	 */

@@ -21,8 +21,7 @@ class JsHighlighterTest extends TestCase {
 
 		Configure::write('Highlighter', [
 				'debug' => false,
-			]
-		);
+		]);
 
 		$this->highlighter = new JsHighlighter();
 	}

@@ -10,12 +10,12 @@ use Markup\Markdown\CommonMarkMarkdown;
 class MarkdownHelper extends Helper {
 
 	/**
-	 * @var \Markup\Markdown\MarkdownInterface
+	 * @var \Markup\Markdown\MarkdownInterface|null
 	 */
 	protected $_converter;
 
 	/**
-	 * @var array
+	 * @var array<string, mixed>
 	 */
 	protected $_defaultConfig = [
 		'converter' => CommonMarkMarkdown::class,
@@ -31,7 +31,7 @@ class MarkdownHelper extends Helper {
 	 * Constructor
 	 *
 	 * @param \Cake\View\View $View The View this helper is being attached to.
-	 * @param array $config Configuration settings for the helper.
+	 * @param array<string, mixed> $config Configuration settings for the helper.
 	 */
 	public function __construct(View $View, array $config = []) {
 		$defaults = (array)Configure::read('Markdown');
@@ -52,7 +52,7 @@ class MarkdownHelper extends Helper {
 	 * - prefix (defaults to `language-`)
 	 *
 	 * @param string $text
-	 * @param array $options
+	 * @param array<string, mixed> $options
 	 * @return string
 	 */
 	public function convert(string $text, array $options = []): string {
@@ -71,9 +71,10 @@ class MarkdownHelper extends Helper {
 	 * @return \Markup\Markdown\MarkdownInterface
 	 */
 	protected function _getConverter() {
-		if (isset($this->_converter)) {
+		if ($this->_converter !== null) {
 			return $this->_converter;
 		}
+		/** @var class-string<\Markup\Markdown\MarkdownInterface> $className */
 		$className = $this->_config['converter'];
 
 		$this->_converter = new $className($this->_config);

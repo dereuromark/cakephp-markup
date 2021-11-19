@@ -5,7 +5,7 @@ namespace Markup\Highlighter;
 class PhpHighlighter extends Highlighter {
 
 	/**
-	 * @var array
+	 * @var array<string, mixed>
 	 */
 	protected $_defaultConfig = [
 		'templates' => [
@@ -24,7 +24,7 @@ class PhpHighlighter extends Highlighter {
 	 * - templates
 	 *
 	 * @param string $text
-	 * @param array $options
+	 * @param array<string, mixed> $options
 	 * @return string
 	 */
 	public function highlight(string $text, array $options = []): string {

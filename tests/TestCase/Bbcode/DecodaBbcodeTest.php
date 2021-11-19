@@ -21,8 +21,7 @@ class DecodaBbcodeTest extends TestCase {
 
 		Configure::write('Bbcode', [
 				'debug' => false,
-			]
-		);
+			]);
 
 		$this->bbcode = new DecodaBbcode();
 	}

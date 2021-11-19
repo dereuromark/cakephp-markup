@@ -1,7 +1,9 @@
 parameters:
 	level: 8
+	paths:
+		- src/
 	bootstrapFiles:
-		- bootstrap.php
+		- tests/bootstrap.php
 	checkMissingIterableValueType: false
 	ignoreErrors:
 		- '#Call to static method createGFMEnvironment\(\) on an unknown class .+Environment#'

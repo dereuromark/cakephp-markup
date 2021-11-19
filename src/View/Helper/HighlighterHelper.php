@@ -10,12 +10,12 @@ use Markup\Highlighter\PhpHighlighter;
 class HighlighterHelper extends Helper {
 
 	/**
-	 * @var \Markup\Highlighter\HighlighterInterface
+	 * @var \Markup\Highlighter\HighlighterInterface|null
 	 */
 	protected $_highlighter;
 
 	/**
-	 * @var array
+	 * @var array<string, mixed>
 	 */
 	protected $_defaultConfig = [
 		'highlighter' => PhpHighlighter::class,
@@ -31,7 +31,7 @@ class HighlighterHelper extends Helper {
 	 * Constructor
 	 *
 	 * @param \Cake\View\View $View The View this helper is being attached to.
-	 * @param array $config Configuration settings for the helper.
+	 * @param array<string, mixed> $config Configuration settings for the helper.
 	 */
 	public function __construct(View $View, array $config = []) {
 		$defaults = (array)Configure::read('Highlighter');
@@ -52,7 +52,7 @@ class HighlighterHelper extends Helper {
 	 * - prefix (defaults to `language-`)
 	 *
 	 * @param string $text
-	 * @param array $options
+	 * @param array<string, mixed> $options
 	 * @return string
 	 */
 	public function highlight(string $text, array $options = []): string {
@@ -71,9 +71,10 @@ class HighlighterHelper extends Helper {
 	 * @return \Markup\Highlighter\HighlighterInterface
 	 */
 	protected function _getHighlighter() {
-		if (isset($this->_highlighter)) {
+		if ($this->_highlighter !== null) {
 			return $this->_highlighter;
 		}
+		/** @var class-string<\Markup\Highlighter\HighlighterInterface> $className */
 		$className = $this->_config['highlighter'];
 
 		$this->_highlighter = new $className($this->_config);

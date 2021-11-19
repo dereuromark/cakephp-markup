@@ -21,8 +21,7 @@ class PhpHighlighterTest extends TestCase {
 
 		Configure::write('Highlighter', [
 				'debug' => false,
-			]
-		);
+		]);
 
 		$this->highlighter = new PhpHighlighter();
 	}

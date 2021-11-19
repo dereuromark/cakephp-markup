@@ -10,8 +10,14 @@ class VideoFilter extends AbstractFilter {
 
 	/**
 	 * Regex pattern.
+	 *
+     * @var string
 	 */
 	public const VIDEO_PATTERN = '/^[-_a-z0-9]+$/is';
+
+    /**
+     * @var string
+     */
 	public const SIZE_PATTERN = '/^(?:small|medium|large)$/i';
 
 	/**
@@ -45,7 +51,7 @@ class VideoFilter extends AbstractFilter {
 	 * @return string
 	 */
 	public function parse(array $tag, $content) {
-		$provider = isset($tag['attributes']['default']) ? $tag['attributes']['default'] : $tag['tag'];
+		$provider = $tag['attributes']['default'] ?? $tag['tag'];
 		//$size = mb_strtolower(isset($tag['attributes']['size']) ? $tag['attributes']['size'] : 'medium');
 
 		preg_match('/^\[video\s*=\s*([a-z0-9_-]+)\]$/i', $tag['text'], $matches);
@@ -78,7 +84,7 @@ class VideoFilter extends AbstractFilter {
 			//TODO
 		}
 
-		if (!isset($this->MediaEmbed)) {
+		if ($this->MediaEmbed === null) {
 			$this->MediaEmbed = new MediaEmbed();
 		}
 		$MediaObject = $this->MediaEmbed->parseId($id, $provider);
