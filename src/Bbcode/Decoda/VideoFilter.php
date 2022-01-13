@@ -11,13 +11,13 @@ class VideoFilter extends AbstractFilter {
 	/**
 	 * Regex pattern.
 	 *
-     * @var string
+	 * @var string
 	 */
 	public const VIDEO_PATTERN = '/^[-_a-z0-9]+$/is';
 
-    /**
-     * @var string
-     */
+	/**
+	 * @var string
+	 */
 	public const SIZE_PATTERN = '/^(?:small|medium|large)$/i';
 
 	/**
