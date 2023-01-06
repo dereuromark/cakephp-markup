@@ -32,7 +32,7 @@ class DecodaBbcode implements BbcodeInterface {
 	/**
 	 * @var array<string, mixed>
 	 */
-	protected $_defaultConfig = [
+	protected array $_defaultConfig = [
 	];
 
 	/**

@@ -7,7 +7,7 @@ class PhpHighlighter extends Highlighter {
 	/**
 	 * @var array<string, mixed>
 	 */
-	protected $_defaultConfig = [
+	protected array $_defaultConfig = [
 		'templates' => [
 			'code' => '<pre{{attr}}>{{content}}</pre>',
 		],

@@ -17,7 +17,7 @@ class HighlighterHelper extends Helper {
 	/**
 	 * @var array<string, mixed>
 	 */
-	protected $_defaultConfig = [
+	protected array $_defaultConfig = [
 		'highlighter' => PhpHighlighter::class,
 		'debug' => null, // Enable debug display
 	];

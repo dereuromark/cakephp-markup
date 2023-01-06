@@ -28,7 +28,7 @@ class VideoFilter extends AbstractFilter {
 	/**
 	 * Supported tags.
 	 *
-	 * @var array
+	 * @var array<string, mixed>
 	 */
 	protected $_tags = [
 		'video' => [

@@ -7,7 +7,7 @@ class JsHighlighter extends Highlighter {
 	/**
 	 * @var array<string, mixed>
 	 */
-	protected $_defaultConfig = [
+	protected array $_defaultConfig = [
 		'escape' => true,
 		'tabToSpaces' => 4,
 		'templates' => [

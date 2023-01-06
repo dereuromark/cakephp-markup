@@ -14,7 +14,7 @@ abstract class Highlighter implements HighlighterInterface {
 	/**
 	 * @var array<string, mixed>
 	 */
-	protected $_defaultConfig = [
+	protected array $_defaultConfig = [
 	];
 
 	/**

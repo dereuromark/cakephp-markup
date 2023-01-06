@@ -3,8 +3,8 @@
 ## Highlighter
 
 ```php
-// You must load the helper before
-$this->loadHelper('Markup.Highlighter', $optionalConfigArray);
+// You must load the helper before in e.g. AppView
+$this->addHelper('Markup.Highlighter', $optionalConfigArray);
 
 // In our template file we can now highlight some code snippet
 $string = <<<'TEXT'
@@ -77,8 +77,8 @@ composer require league/commonmark
 Once you configured it the way you want it you can start using it.
 
 ```php
-// You must load the helper before
-$this->loadHelper('Markup.Markdown', $optionalConfigArray);
+// You must load the helper before in e.g. AppView
+$this->addHelper('Markup.Markdown', $optionalConfigArray);
 
 // In our template file we can now convert some markdown code snippet
 $string = <<<'TEXT'
@@ -100,8 +100,8 @@ composer require mjohnson/decoda
 Once you configured it the way you want it you can start using it.
 
 ```php
-// You must load the helper before
-$this->loadHelper('Markup.Bbcode', $optionalConfigArray);
+// You must load the helper before in e.g. AppView
+$this->addHelper('Markup.Bbcode', $optionalConfigArray);
 
 // In our template file we can now convert some markdown code snippet
 $string = <<<'TEXT'

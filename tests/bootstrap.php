@@ -27,6 +27,7 @@ define('CAKE', CORE_PATH . 'src' . DS);
 
 Cake\Core\Configure::write('App', [
 	'namespace' => 'App',
+	'encoding' => 'UTF-8',
 ]);
 
 Cake\Core\Configure::write('debug', true);

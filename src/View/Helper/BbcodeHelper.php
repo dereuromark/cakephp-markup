@@ -17,7 +17,7 @@ class BbcodeHelper extends Helper {
 	/**
 	 * @var array<string, mixed>
 	 */
-	protected $_defaultConfig = [
+	protected array $_defaultConfig = [
 		'converter' => DecodaBbcode::class,
 		'debug' => null, // Enable debug display
 	];
