@@ -26,7 +26,7 @@
 		"fig-r/psr2r-sniffer": "dev-master",
 		"league/commonmark": "^1.5 || ^2.0",
 		"mjohnson/decoda": "^6.12",
-		"dereuromark/media-embed": "^0.5"
+		"dereuromark/media-embed": "^0.6"
 	},
 	"autoload": {
 		"psr-4": {
