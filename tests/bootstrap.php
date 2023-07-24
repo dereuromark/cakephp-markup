@@ -1,5 +1,9 @@
 <?php
 
+use Cake\Cache\Cache;
+use Cake\Core\Configure;
+use Cake\Datasource\ConnectionManager;
+
 require dirname(__DIR__) . '/vendor/cakephp/cakephp/src/basics.php';
 require dirname(__DIR__) . '/vendor/autoload.php';
 
@@ -25,11 +29,11 @@ define('CAKE_CORE_INCLUDE_PATH', ROOT . '/vendor/cakephp/cakephp');
 define('CORE_PATH', CAKE_CORE_INCLUDE_PATH . DS);
 define('CAKE', CORE_PATH . 'src' . DS);
 
-Cake\Core\Configure::write('App', [
+Configure::write('App', [
 	'namespace' => 'App',
 ]);
 
-Cake\Core\Configure::write('debug', true);
+Configure::write('debug', true);
 
 $cache = [
 	'default' => [
@@ -52,10 +56,10 @@ $cache = [
 	],
 ];
 
-Cake\Cache\Cache::setConfig($cache);
+Cache::setConfig($cache);
 
 if (file_exists(CONFIG . 'app_local.php')) {
-	Cake\Core\Configure::load('app_local', 'default');
+	Configure::load('app_local', 'default');
 }
 
 // Ensure default test connection is defined
@@ -64,7 +68,7 @@ if (!getenv('db_class')) {
 	putenv('db_dsn=sqlite::memory:');
 }
 
-Cake\Datasource\ConnectionManager::setConfig('test', [
+ConnectionManager::setConfig('test', [
 	'className' => 'Cake\Database\Connection',
 	'driver' => getenv('db_class') ?: null,
 	'dsn' => getenv('db_dsn') ?: null,
