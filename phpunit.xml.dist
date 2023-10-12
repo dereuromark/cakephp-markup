@@ -8,12 +8,10 @@
 		<ini name="error_reporting" value="32767"/>
 	</php>
 
-	<!-- Add any additional test suites you want to run here -->
 	<testsuites>
 		<testsuite name="markup">
 			<directory>tests/TestCase/</directory>
 		</testsuite>
-		<!-- Add plugin test suites here. -->
 	</testsuites>
 
 	<source>
