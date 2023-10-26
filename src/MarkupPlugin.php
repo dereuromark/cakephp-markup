@@ -4,7 +4,7 @@ namespace Markup;
 
 use Cake\Core\BasePlugin;
 
-class Plugin extends BasePlugin {
+class MarkupPlugin extends BasePlugin {
 
 	/**
 	 * @var bool
