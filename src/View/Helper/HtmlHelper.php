@@ -23,6 +23,14 @@ class HtmlHelper extends CoreHtmlHelper {
 		return parent::link($title, $url, $options);
 	}
 
+	/**
+	 * @param \Markup\Html\HtmlStringable|string $title
+	 * @param string $path
+	 * @param array $params
+	 * @param array $options
+	 *
+	 * @return string
+	 */
 	public function linkFromPath(string|HtmlStringable $title, string $path, array $params = [], array $options = []): string {
 		if ($title instanceof HtmlStringable) {
 			$options['escapeTitle'] = false;

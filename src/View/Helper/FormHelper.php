@@ -8,7 +8,7 @@ use Markup\Html\HtmlStringable;
 class FormHelper extends CoreFormHelper {
 
 	/**
-	 * @param string|\Markup\Html\HtmlStringable $title
+	 * @param \Markup\Html\HtmlStringable|string $title
 	 * @param array|string|null $url
 	 * @param array $options
 	 *
@@ -24,7 +24,7 @@ class FormHelper extends CoreFormHelper {
 	}
 
 	/**
-	 * @param string|\Markup\Html\HtmlStringable $title
+	 * @param \Markup\Html\HtmlStringable|string $title
 	 * @param array|string $url
 	 * @param array $options
 	 *

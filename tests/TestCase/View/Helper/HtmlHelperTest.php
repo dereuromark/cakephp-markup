@@ -50,7 +50,10 @@ class HtmlHelperTest extends TestCase {
 	public function testLink() {
 		$icon = new class implements HtmlStringable {
 
-			function __toString(): string {
+			/**
+			 * @return string
+			 */
+			public function __toString(): string {
 				return '<span>Some ICON HTML</span>';
 			}
 		};
