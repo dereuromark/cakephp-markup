@@ -1,5 +1,5 @@
 # Markup Plugin for CakePHP
-[![CI](https://github.com/dereuromark/cakephp-markup/workflows/CI/badge.svg?branch=master)](https://github.com/dereuromark/cakephp-markup/actions?query=workflow%3ACI+branch%3Amaster)
+[![CI](https://github.com/dereuromark/cakephp-markup/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/dereuromark/cakephp-markup/actions/workflows/ci.yml?query=branch%3Amaster)
 [![Coverage Status](https://coveralls.io/repos/dereuromark/cakephp-markup/badge.svg)](https://coveralls.io/r/dereuromark/cakephp-markup)
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%208.1-8892BF.svg)](https://php.net/)
 [![License](https://poser.pugx.org/dereuromark/cakephp-markup/license)](https://packagist.org/packages/dereuromark/cakephp-markup)
