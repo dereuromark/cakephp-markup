@@ -1,15 +1,14 @@
 {
 	"name": "dereuromark/cakephp-markup",
-	"type": "cakephp-plugin",
 	"description": "CakePHP plugin for markup (parsing and displaying)",
+	"license": "MIT",
+	"type": "cakephp-plugin",
 	"keywords": [
 		"cakephp",
 		"plugin",
 		"markup",
 		"highlighting"
 	],
-	"homepage": "https://github.com/dereuromark/cakephp-markup",
-	"license": "MIT",
 	"authors": [
 		{
 			"name": "Mark Scherer",
@@ -17,17 +16,23 @@
 			"role": "Maintainer"
 		}
 	],
+	"homepage": "https://github.com/dereuromark/cakephp-markup",
+	"support": {
+		"source": "https://github.com/dereuromark/cakephp-markup"
+	},
 	"require": {
 		"php": ">=8.1",
 		"cakephp/cakephp": "^5.0.0"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "^10.2",
+		"dereuromark/media-embed": "^0.6",
 		"fig-r/psr2r-sniffer": "dev-next",
 		"league/commonmark": "^1.5 || ^2.0",
 		"mjohnson/decoda": "^6.12",
-		"dereuromark/media-embed": "^0.6"
+		"phpunit/phpunit": "^10.2"
 	},
+	"minimum-stability": "stable",
+	"prefer-stable": true,
 	"autoload": {
 		"psr-4": {
 			"Markup\\": "src/"
@@ -35,28 +40,23 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Markup\\Test\\": "tests/",
-			"Cake\\Test\\": "vendor/cakephp/cakephp/tests/"
+			"Cake\\Test\\": "vendor/cakephp/cakephp/tests/",
+			"Markup\\Test\\": "tests/"
 		}
-	},
-	"support": {
-		"source": "https://github.com/dereuromark/cakephp-markup"
-	},
-	"scripts": {
-		"stan": "phpstan analyse",
-		"stan-setup": "cp composer.json composer.backup && composer require --dev phpstan/phpstan:^1.0.0 && mv composer.backup composer.json",
-		"test": "phpunit",
-		"test-coverage": "phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage --coverage-clover tmp/coverage/coverage.xml",
-		"lowest": "validate-prefer-lowest",
-		"lowest-setup": "composer update --prefer-lowest --prefer-stable --prefer-dist --no-interaction && cp composer.json composer.backup && composer require --dev dereuromark/composer-prefer-lowest && mv composer.backup composer.json",
-		"cs-check": "phpcs --extensions=php",
-		"cs-fix": "phpcbf --extensions=php"
 	},
 	"config": {
 		"allow-plugins": {
 			"dealerdirect/phpcodesniffer-composer-installer": true
 		}
 	},
-	"minimum-stability": "stable",
-	"prefer-stable": true
+	"scripts": {
+		"cs-check": "phpcs --extensions=php",
+		"cs-fix": "phpcbf --extensions=php",
+		"lowest": "validate-prefer-lowest",
+		"lowest-setup": "composer update --prefer-lowest --prefer-stable --prefer-dist --no-interaction && cp composer.json composer.backup && composer require --dev dereuromark/composer-prefer-lowest && mv composer.backup composer.json",
+		"stan": "phpstan analyse",
+		"stan-setup": "cp composer.json composer.backup && composer require --dev phpstan/phpstan:^1.0.0 && mv composer.backup composer.json",
+		"test": "phpunit",
+		"test-coverage": "phpunit --log-junit tmp/coverage/unitreport.xml --coverage-html tmp/coverage --coverage-clover tmp/coverage/coverage.xml"
+	}
 }
