@@ -149,6 +149,9 @@ TEXT;
 
 		$result = $this->helper->highlight($text, ['lang' => 'php']);
 		$expected = '<pre class="language-php"><code><span style="color: #000000">if&nbsp;($foo)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(true)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;doSth();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}</span></code></pre>';
+		if (version_compare(phpversion(), '8.3', '>=')) {
+			$expected = '<div class="language-php"><pre><code style="color: #000000">if ($foo) {    while (true) {        $this-&gt;doSth();    }}</code></pre></div>';
+		}
 		$this->assertSame($expected, $result);
 	}
 
