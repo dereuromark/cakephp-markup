@@ -41,6 +41,10 @@ class PhpHighlighterTest extends TestCase {
 	public function testConvert(): void {
 		$result = $this->highlighter->highlight('My text');
 		$expected = '<pre class="language-txt"><code><span style="color: #000000">My&nbsp;text</span></code></pre>';
+		if (version_compare(phpversion(), '8.3', '>=')) {
+			$expected = '<div class="language-txt"><pre><code style="color: #000000">My text</code></pre></div>';
+		}
+
 		$this->assertSame($expected, $result);
 	}
 

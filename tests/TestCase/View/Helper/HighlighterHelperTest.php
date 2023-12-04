@@ -58,6 +58,9 @@ TEXT;
 
 		$result = $this->helper->highlight($text, ['lang' => 'php']);
 		$expected = '<pre class="language-php"><code><span style="color: #000000">$key&nbsp;=&nbsp;\'string\'&nbsp;.&nbsp;$this-&gt;something-&gt;do(true);&nbsp;//&nbsp;Some&nbsp;comment</span></code></pre>';
+		if (version_compare(phpversion(), '8.3', '>=')) {
+			$expected = '<div class="language-php"><pre><code style="color: #000000">$key = \'string\' . $this-&gt;something-&gt;do(true); // Some comment</code></pre></div>';
+		}
 		$this->assertSame($expected, $result);
 	}
 
@@ -71,6 +74,9 @@ TEXT;
 
 		$result = $this->helper->highlight($text, ['lang' => 'php', 'prefix' => 'l-']);
 		$expected = '<pre class="l-php"><code><span style="color: #000000">$key&nbsp;=&nbsp;\'string\'&nbsp;.&nbsp;$this-&gt;something-&gt;do(true);</span></code></pre>';
+		if (version_compare(phpversion(), '8.3', '>=')) {
+			$expected = '<div class="l-php"><pre><code style="color: #000000">$key = \'string\' . $this-&gt;something-&gt;do(true);</code></pre></div>';
+		}
 		$this->assertSame($expected, $result);
 	}
 
@@ -134,12 +140,18 @@ TEXT;
 
 		$result = $this->helper->highlight($text, ['lang' => 'php']);
 		$expected = '<pre class="language-php"><code><span style="color: #000000">if&nbsp;($foo)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(true)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;doSth();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}</span></code></pre>';
+		if (version_compare(phpversion(), '8.3', '>=')) {
+			$expected = '<div class="language-php"><pre><code style="color: #000000">if ($foo) {    while (true) {        $this-&gt;doSth();    }}</code></pre></div>';
+		}
 		$this->assertEquals($expected, $result);
 
 		$this->helper->setConfig('highlighter', 'Markup\Highlighter\JsHighlighter');
 
 		$result = $this->helper->highlight($text, ['lang' => 'php']);
 		$expected = '<pre class="language-php"><code><span style="color: #000000">if&nbsp;($foo)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while&nbsp;(true)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;doSth();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}</span></code></pre>';
+		if (version_compare(phpversion(), '8.3', '>=')) {
+			$expected = '<div class="language-php"><pre><code style="color: #000000">if ($foo) {    while (true) {        $this-&gt;doSth();    }}</code></pre></div>';
+		}
 		$this->assertSame($expected, $result);
 	}
 

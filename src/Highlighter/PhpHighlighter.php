@@ -16,6 +16,17 @@ class PhpHighlighter extends Highlighter {
 	];
 
 	/**
+	 * @param array<string, mixed> $config
+	 */
+	public function __construct(array $config = []) {
+		if (version_compare(phpversion(), '8.3', '>=')) {
+			$this->_defaultConfig['templates']['code'] = '<div{{attr}}>{{content}}</div>';
+		}
+
+		parent::__construct($config);
+	}
+
+	/**
 	 * Highlight code.
 	 *
 	 * Options:
