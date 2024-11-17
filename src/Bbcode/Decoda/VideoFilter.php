@@ -46,7 +46,7 @@ class VideoFilter extends AbstractFilter {
 	/**
 	 * Custom build the HTML for videos.
 	 *
-	 * @param array $tag
+	 * @param array<string, mixed> $tag
 	 * @param string $content
 	 * @return string
 	 */
