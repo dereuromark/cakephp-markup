@@ -4,7 +4,7 @@ parameters:
 		- src/
 	bootstrapFiles:
 		- tests/bootstrap.php
-	checkMissingIterableValueType: false
 	ignoreErrors:
+		- identifier: missingType.iterableValue
 		- '#Call to static method createGFMEnvironment\(\) on an unknown class .+Environment#'
 		- '#Class .+CommonMarkConverter constructor invoked with 2 parameters, 0-1 required#'
