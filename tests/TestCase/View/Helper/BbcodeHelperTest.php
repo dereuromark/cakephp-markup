@@ -29,7 +29,7 @@ class BbcodeHelperTest extends TestCase {
 		parent::setUp();
 
 		Configure::write('Bbcode', [
-				'debug' => false,
+			'debug' => false,
 		]);
 
 		$this->request = new ServerRequest();

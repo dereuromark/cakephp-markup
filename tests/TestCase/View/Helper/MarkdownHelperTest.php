@@ -29,7 +29,7 @@ class MarkdownHelperTest extends TestCase {
 		parent::setUp();
 
 		Configure::write('Markdown', [
-				'debug' => false,
+			'debug' => false,
 		]);
 
 		$this->request = new ServerRequest();

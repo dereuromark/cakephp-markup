@@ -29,8 +29,8 @@ class HighlighterHelperTest extends TestCase {
 		parent::setUp();
 
 		Configure::write('Highlighter', [
-				'debug' => false,
-			]);
+			'debug' => false,
+		]);
 
 		$this->request = new ServerRequest();
 		$view = new View($this->request);

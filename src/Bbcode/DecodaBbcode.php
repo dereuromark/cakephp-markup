@@ -32,8 +32,7 @@ class DecodaBbcode implements BbcodeInterface {
 	/**
 	 * @var array<string, mixed>
 	 */
-	protected array $_defaultConfig = [
-	];
+	protected array $_defaultConfig = [];
 
 	/**
 	 * @param array<string, mixed> $config
@@ -68,8 +67,7 @@ class DecodaBbcode implements BbcodeInterface {
 	 * @return \Decoda\Decoda
 	 */
 	protected function converter(string $text, array $options = []): Decoda {
-		$options += [
-		];
+		$options += [];
 
 		$this->converter = new Decoda($text, $options);
 		// For now lets use basic defaults
