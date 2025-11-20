@@ -54,8 +54,7 @@ class VideoFilter extends AbstractFilter {
 		$provider = $tag['attributes']['default'] ?? $tag['tag'];
 		//$size = mb_strtolower(isset($tag['attributes']['size']) ? $tag['attributes']['size'] : 'medium');
 
-		preg_match('/^\[video\s*=\s*([a-z0-9_-]+)\]$/i', $tag['text'], $matches);
-		if (!$matches) {
+		if (preg_match('/^\[video\s*=\s*([a-z0-9_-]+)\]$/i', $tag['text'], $matches) !== 1) {
 			return $tag['text'] . $content . '[/' . $tag['tag'] . ']';
 		}
 
@@ -76,12 +75,13 @@ class VideoFilter extends AbstractFilter {
 	 */
 	protected function transform($provider, $id) {
 		// timestamp?
+		$t = null;
 		if (strpos($id, ',') !== false) {
 			[$id, $t] = explode(',', $id, 2);
 		}
-		if (!empty($t)) {
-			// with timestamps we cannot use the embed mode...
-			//TODO
+		if ($t) {
+			// with timestamps we cannot use the embed mode, as providers don't support deep linking via embed URLs
+			// This feature would require implementing direct video URLs instead of embeds
 		}
 
 		if ($this->MediaEmbed === null) {
