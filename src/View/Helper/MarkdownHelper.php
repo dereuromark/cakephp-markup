@@ -7,7 +7,6 @@ use Cake\View\Helper;
 use Cake\View\View;
 use InvalidArgumentException;
 use Markup\Markdown\CommonMarkMarkdown;
-use Markup\Markdown\MarkdownInterface;
 
 class MarkdownHelper extends Helper {
 
@@ -79,7 +78,7 @@ class MarkdownHelper extends Helper {
 		/** @var class-string<\Markup\Markdown\MarkdownInterface> $className */
 		$className = $this->_config['converter'];
 
-		if (!class_exists($className) || !is_subclass_of($className, MarkdownInterface::class)) {
+		if (!class_exists($className)) {
 			throw new InvalidArgumentException("Invalid converter class: {$className}");
 		}
 

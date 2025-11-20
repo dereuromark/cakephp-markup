@@ -6,7 +6,6 @@ use Cake\Core\Configure;
 use Cake\View\Helper;
 use Cake\View\View;
 use InvalidArgumentException;
-use Markup\Bbcode\BbcodeInterface;
 use Markup\Bbcode\DecodaBbcode;
 
 class BbcodeHelper extends Helper {
@@ -79,7 +78,7 @@ class BbcodeHelper extends Helper {
 		/** @var class-string<\Markup\Bbcode\BbcodeInterface> $className */
 		$className = $this->_config['converter'];
 
-		if (!class_exists($className) || !is_subclass_of($className, BbcodeInterface::class)) {
+		if (!class_exists($className)) {
 			throw new InvalidArgumentException("Invalid converter class: {$className}");
 		}
 
