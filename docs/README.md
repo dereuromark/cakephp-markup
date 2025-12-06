@@ -110,3 +110,77 @@ TEXT;
 
 echo $this->Bbcode->convert($string);
 ```
+
+## Djot
+
+[Djot](https://djot.net/) is a modern markup language created by John MacFarlane (author of CommonMark/Pandoc).
+It provides a cleaner syntax than Markdown with more consistent behavior.
+
+By default, the included `DjotMarkup` class requires you to install its dependency:
+```
+composer require php-collective/djot
+```
+
+### Using the Helper
+
+```php
+// You must load the helper before in e.g. AppView
+$this->addHelper('Markup.Djot', $optionalConfigArray);
+
+// In our template file we can now convert some djot markup
+$string = <<<'TEXT'
+# Heading
+
+Some *bold* text and also some _italic_.
+
+A [link](https://example.com) and `inline code`.
+TEXT;
+
+echo $this->Djot->convert($string);
+```
+
+### Configuration Options
+
+The helper and converter support the following options:
+
+- `safeMode` (default: `true`): Enable XSS protection - blocks dangerous URLs (javascript:, data:),
+  filters unsafe attributes (onclick, etc.), and escapes raw HTML.
+- `xhtml` (default: `false`): Output XHTML-compatible markup (self-closing tags like `<br />`).
+- `strict` (default: `false`): Throw exceptions on parse errors instead of silently handling them.
+- `profile` (default: `null`): Restrict which markup features are allowed. Use built-in profiles
+  (`'full'`, `'article'`, `'comment'`, `'minimal'`) or a custom `Profile` instance.
+
+Example with profile for user comments:
+```php
+// In AppView - restrict features for user-generated content
+$this->addHelper('Markup.Djot', [
+    'profile' => 'comment', // Allows basic formatting, blocks images/headings/raw HTML
+]);
+```
+
+### Using DjotView for Templates
+
+You can also render `.djot` files directly as templates:
+
+```php
+// In your controller
+public function documentation(): void
+{
+    $this->viewBuilder()->setClassName('Markup.Djot');
+}
+```
+
+Create templates with `.djot` extension (e.g., `templates/Pages/documentation.djot`):
+```djot
+# Welcome, {{username}}!
+
+This page was rendered from a `.djot` template file.
+
+You can use all djot features:
+
+- *Bold* and _italic_ text
+- [Links](https://example.com)
+- `Code blocks`
+```
+
+View variables are available for substitution using `{{varName}}` syntax.

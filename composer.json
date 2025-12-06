@@ -21,7 +21,7 @@
 		"source": "https://github.com/dereuromark/cakephp-markup"
 	},
 	"require": {
-		"php": ">=8.1",
+		"php": ">=8.2",
 		"cakephp/cakephp": "^5.1.1"
 	},
 	"require-dev": {
@@ -29,6 +29,7 @@
 		"fig-r/psr2r-sniffer": "dev-master",
 		"league/commonmark": "^1.5 || ^2.0",
 		"mjohnson/decoda": "^6.12",
+		"php-collective/djot": "^0.1",
 		"phpunit/phpunit": "^10.5 || ^11.5 || ^12.1"
 	},
 	"minimum-stability": "stable",
