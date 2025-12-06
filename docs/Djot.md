@@ -97,3 +97,6 @@ Implement the `DjotInterface` and configure it:
     'converter' => 'VendorName\PluginName\CustomDjot',
 ],
 ```
+
+This allows full customization of the Jdot conversion process.
+See the cookbook in the Jdot library.
