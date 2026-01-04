@@ -8,6 +8,21 @@ use Cake\View\View;
 use InvalidArgumentException;
 use Markup\Markdown\CommonMarkMarkdown;
 
+/**
+ * MarkdownHelper - Converts Markdown text to HTML.
+ *
+ * Provides a simple interface for converting Markdown-formatted text to HTML
+ * using a configurable converter (CommonMark by default).
+ *
+ * Usage:
+ * ```php
+ * // In your template
+ * echo $this->Markdown->convert($markdownText);
+ * ```
+ *
+ * @author Mark Scherer
+ * @license MIT
+ */
 class MarkdownHelper extends Helper {
 
 	/**
@@ -44,17 +59,12 @@ class MarkdownHelper extends Helper {
 	}
 
 	/**
-	 * Highlight a string.
+	 * Convert Markdown text to HTML.
 	 *
-	 * Options, depending on the specific highlighter class used:
-	 * - templates
-	 * - escape (defaults to true)
-	 * - tabToSpaces (defaults to 4)
-	 * - prefix (defaults to `language-`)
+	 * @param string $text Markdown-formatted text to convert.
+	 * @param array<string, mixed> $options Options passed to the converter.
 	 *
-	 * @param string $text
-	 * @param array<string, mixed> $options
-	 * @return string
+	 * @return string Converted HTML output.
 	 */
 	public function convert(string $text, array $options = []): string {
 		if ($this->_config['debug']) {
