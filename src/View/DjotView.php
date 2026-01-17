@@ -44,6 +44,8 @@ use Markup\Djot\DjotMarkup;
  * Configure via `Configure::write('Djot', [...])` or pass options to the view:
  * - `safeMode`: Enable XSS protection (default: true)
  * - `converter`: Custom converter class implementing DjotInterface
+ *
+ * @extends \Cake\View\View<\Markup\View\DjotView>
  */
 class DjotView extends View {
 

@@ -8,6 +8,9 @@ use Cake\View\View;
 use InvalidArgumentException;
 use Markup\Bbcode\DecodaBbcode;
 
+/**
+ * @template TView of \Cake\View\View
+ */
 class BbcodeHelper extends Helper {
 
 	/**
@@ -31,7 +34,7 @@ class BbcodeHelper extends Helper {
 	/**
 	 * Constructor
 	 *
-	 * @param \Cake\View\View $View The View this helper is being attached to.
+	 * @param \Cake\View\View<TView> $View The View this helper is being attached to.
 	 * @param array<string, mixed> $config Configuration settings for the helper.
 	 */
 	public function __construct(View $View, array $config = []) {
