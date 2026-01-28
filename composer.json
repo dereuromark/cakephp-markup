@@ -30,7 +30,7 @@
 		"league/commonmark": "^1.5 || ^2.0",
 		"mjohnson/decoda": "^6.12",
 		"php-collective/djot": "^0.1.3",
-		"phpunit/phpunit": "^10.5 || ^11.5 || ^12.1"
+		"phpunit/phpunit": "^11.5 || ^12.1"
 	},
 	"minimum-stability": "stable",
 	"prefer-stable": true,
