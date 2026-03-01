@@ -8,6 +8,9 @@ use Cake\View\View;
 use InvalidArgumentException;
 use Markup\Bbcode\DecodaBbcode;
 
+/**
+ * @extends Helper<\Cake\View\View>
+ */
 class BbcodeHelper extends Helper {
 
 	/**

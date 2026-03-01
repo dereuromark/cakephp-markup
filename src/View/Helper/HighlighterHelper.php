@@ -7,6 +7,9 @@ use Cake\View\Helper;
 use Cake\View\View;
 use Markup\Highlighter\PhpHighlighter;
 
+/**
+ * @extends Helper<\Cake\View\View>
+ */
 class HighlighterHelper extends Helper {
 
 	/**

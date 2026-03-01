@@ -14,6 +14,7 @@ use Markup\Djot\DjotMarkup;
  * Djot is a modern markup language created by John MacFarlane (author of CommonMark/Pandoc).
  *
  * @link https://djot.net/ Djot specification
+ * @extends Helper<\Cake\View\View>
  */
 class DjotHelper extends Helper {
 
