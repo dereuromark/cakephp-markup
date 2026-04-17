@@ -63,7 +63,6 @@ class CommonMarkMarkdown implements MarkdownInterface {
 	 * @return \League\CommonMark\MarkdownConverterInterface
 	 */
 	public static function defaultConverter(array $options = []): MarkdownConverterInterface {
-
 		$options += [
 			'escape' => true,
 		];
