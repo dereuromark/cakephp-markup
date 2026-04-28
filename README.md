@@ -5,7 +5,7 @@
 [![License](https://poser.pugx.org/dereuromark/cakephp-markup/license.svg)](LICENSE)
 [![Latest Stable Version](https://poser.pugx.org/dereuromark/cakephp-markup/v/stable.svg)](https://packagist.org/packages/dereuromark/cakephp-markup)
 [![Total Downloads](https://poser.pugx.org/dereuromark/cakephp-markup/d/total.svg)](https://packagist.org/packages/dereuromark/cakephp-markup)
-[![Coding Standards](https://img.shields.io/badge/cs-PSR--2--R-yellow.svg)](https://github.com/php-fig-rectified/fig-rectified-standards)
+[![Coding Standards](https://img.shields.io/badge/cs-PSR--2--R-purple.svg?style=flat-square)](https://github.com/php-fig-rectified/fig-rectified-standards)
 
 A CakePHP plugin to
 - easily use code syntax highlighters.
