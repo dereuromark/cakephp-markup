@@ -93,6 +93,24 @@ TEXT;
 	}
 
 	/**
+	 * The converter must be rebuilt when per-call options differ from the
+	 * cached one. Otherwise the first call's safeMode would be pinned for the
+	 * lifetime of the instance — a real XSS regression vector under long-lived
+	 * FPM/queue workers.
+	 *
+	 * @return void
+	 */
+	public function testConverterRebuildsWhenOptionsChange(): void {
+		$text = "[click](javascript:alert('xss'))";
+
+		$first = $this->djot->convert($text, ['safeMode' => false]);
+		$this->assertStringContainsString('javascript:', $first);
+
+		$second = $this->djot->convert($text, ['safeMode' => true]);
+		$this->assertStringNotContainsString('javascript:', $second);
+	}
+
+	/**
 	 * @return void
 	 */
 	public function testConvertRawHtml(): void {
