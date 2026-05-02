@@ -19,9 +19,19 @@ class DjotMarkup implements DjotInterface {
 	use InstanceConfigTrait;
 
 	/**
+	 * Cached converter, keyed by the hash of options used to build it.
+	 * Per-call options that differ from the cached key trigger a rebuild,
+	 * preventing a `safeMode=false` instance from serving a later call that
+	 * requested `safeMode=true` — a real risk in long-lived FPM/queue workers.
+	 *
 	 * @var \Djot\DjotConverter|null
 	 */
 	protected ?DjotConverter $converter = null;
+
+	/**
+	 * @var string|null
+	 */
+	protected ?string $converterKey = null;
 
 	/**
 	 * Default configuration.
@@ -71,8 +81,8 @@ class DjotMarkup implements DjotInterface {
 	 * @return \Djot\DjotConverter
 	 */
 	protected function converter(array $options): DjotConverter {
-		// Create new converter if options differ from cached one
-		if ($this->converter === null) {
+		$key = md5(serialize($options));
+		if ($this->converter === null || $this->converterKey !== $key) {
 			$profile = $this->resolveProfile($options['profile'] ?? null);
 
 			$this->converter = new DjotConverter(
@@ -82,6 +92,7 @@ class DjotMarkup implements DjotInterface {
 				safeMode: $options['safeMode'] ?? true,
 				profile: $profile,
 			);
+			$this->converterKey = $key;
 		}
 
 		return $this->converter;

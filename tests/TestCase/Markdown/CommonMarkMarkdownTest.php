@@ -82,4 +82,47 @@ TXT;
 		$this->assertSame($expected, $result);
 	}
 
+	/**
+	 * Defaults must neutralize the `javascript:` URL scheme on links and images
+	 * so `[click](javascript:alert(1))` cannot escape into a usable href.
+	 *
+	 * @return void
+	 */
+	public function testConvertNeutralizesJavascriptLinks(): void {
+		$text = "[click](javascript:alert(1))\n\n![x](javascript:alert(1))";
+
+		$result = $this->markdown->convert($text);
+		$this->assertStringNotContainsString('javascript:', $result);
+	}
+
+	/**
+	 * Defaults must neutralize `data:` URLs which can carry inline HTML/JS.
+	 *
+	 * @return void
+	 */
+	public function testConvertNeutralizesDataLinks(): void {
+		$text = '[click](data:text/html,<script>alert(1)</script>)';
+
+		$result = $this->markdown->convert($text);
+		$this->assertStringNotContainsString('data:text/html', $result);
+		$this->assertStringNotContainsString('<script', $result);
+	}
+
+	/**
+	 * The converter must be rebuilt when per-call options differ from the
+	 * cached one. Otherwise the first call's safety setting would be pinned
+	 * for the lifetime of the instance — a real XSS regression vector under
+	 * long-lived FPM/queue workers.
+	 *
+	 * @return void
+	 */
+	public function testConverterRebuildsWhenOptionsChange(): void {
+		$first = $this->markdown->convert('<b>x</b>', ['escape' => true]);
+		$this->assertStringContainsString('&lt;b&gt;', $first);
+
+		$second = $this->markdown->convert('<b>x</b>', ['escape' => false]);
+		$this->assertStringContainsString('<b>x</b>', $second);
+		$this->assertStringNotContainsString('&lt;b&gt;', $second);
+	}
+
 }
