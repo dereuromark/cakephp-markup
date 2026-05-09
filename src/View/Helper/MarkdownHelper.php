@@ -20,9 +20,9 @@ use Markup\Markdown\CommonMarkMarkdown;
  * echo $this->Markdown->convert($markdownText);
  * ```
  *
- * @extends Helper<\Cake\View\View>
  * @author Mark Scherer
  * @license MIT
+ * @extends Helper<\Cake\View\View>
  */
 class MarkdownHelper extends Helper {
 
