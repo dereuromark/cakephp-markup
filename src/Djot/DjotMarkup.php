@@ -82,7 +82,7 @@ class DjotMarkup implements DjotInterface {
 	 */
 	protected function converter(array $options): DjotConverter {
 		$key = md5(serialize($options));
-		if ($this->converter === null || $this->converterKey !== $key) {
+		if (!$this->converter instanceof \Djot\DjotConverter || $this->converterKey !== $key) {
 			$profile = $this->resolveProfile($options['profile'] ?? null);
 
 			$this->converter = new DjotConverter(
