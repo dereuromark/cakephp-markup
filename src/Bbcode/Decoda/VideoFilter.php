@@ -54,7 +54,7 @@ class VideoFilter extends AbstractFilter {
 		$provider = $tag['attributes']['default'] ?? $tag['tag'];
 		//$size = mb_strtolower(isset($tag['attributes']['size']) ? $tag['attributes']['size'] : 'medium');
 
-		if (preg_match('/^\[video\s*=\s*([a-z0-9_-]+)\]$/i', (string) $tag['text'], $matches) !== 1) {
+		if (preg_match('/^\[video\s*=\s*([a-z0-9_-]+)\]$/i', (string)$tag['text'], $matches) !== 1) {
 			return $tag['text'] . $content . '[/' . $tag['tag'] . ']';
 		}
 
