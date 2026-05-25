@@ -65,7 +65,7 @@ class CommonMarkMarkdown implements MarkdownInterface {
 	 */
 	protected function converter(array $options = []): MarkdownConverterInterface {
 		$key = md5(serialize($options));
-		if (!$this->converter instanceof MarkdownConverterInterface || $this->converterKey !== $key) {
+		if (!($this->converter instanceof MarkdownConverterInterface) || $this->converterKey !== $key) {
 			$this->converter = static::defaultConverter($options);
 			$this->converterKey = $key;
 		}
