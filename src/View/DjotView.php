@@ -96,7 +96,7 @@ class DjotView extends View {
 	 * @return \Markup\Djot\DjotInterface
 	 */
 	protected function _getConverter(): DjotInterface {
-		if ($this->_converter instanceof DjotInterface) {
+		if ($this->_converter !== null) {
 			return $this->_converter;
 		}
 
