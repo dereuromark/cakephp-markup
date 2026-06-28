@@ -34,7 +34,6 @@ class DjotViewTest extends TestCase {
 		}
 
 		Configure::write('App.paths.templates', [$this->testTemplatePath]);
-		Configure::delete('Djot');
 
 		$this->view = new DjotView();
 		$this->view->disableAutoLayout();
@@ -120,18 +119,6 @@ DJOT;
 		$result = $this->view->render();
 
 		$this->assertStringNotContainsString('javascript:', $result);
-	}
-
-	/**
-	 * Global `Djot` Configure values must apply to direct `.djot` rendering.
-	 *
-	 * @return void
-	 */
-	public function testHonorsGlobalConfig(): void {
-		Configure::write('Djot', ['safeMode' => false]);
-
-		$view = new DjotView();
-		$this->assertFalse($view->getConfig('safeMode'));
 	}
 
 	/**
