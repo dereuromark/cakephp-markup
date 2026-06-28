@@ -34,6 +34,7 @@ class CarveViewTest extends TestCase {
 		}
 
 		Configure::write('App.paths.templates', [$this->testTemplatePath]);
+		Configure::delete('Carve');
 
 		$this->view = new CarveView();
 		$this->view->disableAutoLayout();
@@ -119,6 +120,18 @@ CARVE;
 		$result = $this->view->render();
 
 		$this->assertStringNotContainsString('javascript:', $result);
+	}
+
+	/**
+	 * Global `Carve` Configure values must apply to direct `.carve` rendering.
+	 *
+	 * @return void
+	 */
+	public function testHonorsGlobalConfig(): void {
+		Configure::write('Carve', ['safeMode' => false]);
+
+		$view = new CarveView();
+		$this->assertFalse($view->getConfig('safeMode'));
 	}
 
 	/**
