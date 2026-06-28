@@ -2,6 +2,10 @@
 
 namespace Markup\View;
 
+use Cake\Core\Configure;
+use Cake\Event\EventManagerInterface;
+use Cake\Http\Response;
+use Cake\Http\ServerRequest;
 use Cake\View\View;
 use Markup\Djot\DjotInterface;
 use Markup\Djot\DjotMarkup;
@@ -66,6 +70,28 @@ class DjotView extends View {
 		'safeMode' => true,
 		'converter' => DjotMarkup::class,
 	];
+
+	/**
+	 * Constructor.
+	 *
+	 * Merges the global `Djot` Configure values as defaults so that app-level
+	 * settings (custom `converter`, `profile`, `safeMode`, ...) apply when
+	 * rendering `.djot` templates. Explicit view options still win.
+	 *
+	 * @param \Cake\Http\ServerRequest|null $request Request instance.
+	 * @param \Cake\Http\Response|null $response Response instance.
+	 * @param \Cake\Event\EventManagerInterface|null $eventManager Event manager instance.
+	 * @param array<string, mixed> $viewOptions View options.
+	 */
+	public function __construct(
+		?ServerRequest $request = null,
+		?Response $response = null,
+		?EventManagerInterface $eventManager = null,
+		array $viewOptions = [],
+	) {
+		$defaults = (array)Configure::read('Djot');
+		parent::__construct($request, $response, $eventManager, $viewOptions + $defaults);
+	}
 
 	/**
 	 * Renders a djot template file and converts it to HTML.
