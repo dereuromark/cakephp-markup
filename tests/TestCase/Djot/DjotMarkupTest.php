@@ -83,13 +83,18 @@ TEXT;
 		$text = <<<'TEXT'
 # Header
 
+Some text with `<b>raw html</b>`{=html} inline.
+
 A link with [dangerous URL](javascript:alert('xss')).
 TEXT;
 
 		$result = $this->djot->convert($text, ['safeMode' => false]);
 		$this->assertStringContainsString('<h1>Header</h1>', $result);
-		// Without safe mode, dangerous URLs are allowed
-		$this->assertStringContainsString('javascript:', $result);
+		// Without safe mode, raw HTML is passed through unescaped.
+		$this->assertStringContainsString('<b>raw html</b>', $result);
+		// Dangerous URL schemes are stripped by the library's always-on
+		// baseline hardening, independent of safe mode.
+		$this->assertStringNotContainsString('javascript:', $result);
 	}
 
 	/**
@@ -101,13 +106,16 @@ TEXT;
 	 * @return void
 	 */
 	public function testConverterRebuildsWhenOptionsChange(): void {
-		$text = "[click](javascript:alert('xss'))";
+		$text = 'Some `<b>raw html</b>`{=html} inline.';
 
+		// Without safe mode raw HTML passes through unescaped.
 		$first = $this->djot->convert($text, ['safeMode' => false]);
-		$this->assertStringContainsString('javascript:', $first);
+		$this->assertStringContainsString('<b>raw html</b>', $first);
 
+		// A later call with safe mode must rebuild the converter and escape it.
 		$second = $this->djot->convert($text, ['safeMode' => true]);
-		$this->assertStringNotContainsString('javascript:', $second);
+		$this->assertStringNotContainsString('<b>raw html</b>', $second);
+		$this->assertStringContainsString('&lt;b&gt;', $second);
 	}
 
 	/**
