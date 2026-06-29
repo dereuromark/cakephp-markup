@@ -12,6 +12,7 @@ A CakePHP plugin to
 - quickly convert Markdown snippets.
 - quickly convert BBCode snippets.
 - quickly convert Djot snippets.
+- quickly convert Carve snippets.
 
 This branch is for **CakePHP 5.1+**. See [version map](https://github.com/dereuromark/cakephp-markup/wiki#cakephp-version-map) for details.
 
