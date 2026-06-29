@@ -92,7 +92,7 @@ class VideoFilter extends AbstractFilter {
 			return null;
 		}
 
-		$MediaObject->setAttribute('width', '100%');
+		$MediaObject = $MediaObject->withAttribute('width', '100%');
 
 		return $MediaObject->getEmbedCode();
 	}

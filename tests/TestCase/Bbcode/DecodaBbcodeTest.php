@@ -87,7 +87,7 @@ Enjoy!
 TEXT;
 
 		$result = $this->bbcode->convert($text, ['escape' => false]);
-		$expected = 'Video Demo<br><iframe src="//www.youtube.com/embed/123?wmode=transparent" type="text/html" width="100%" height="295" frameborder="0" allowfullscreen></iframe><br>Enjoy!';
+		$expected = 'Video Demo<br><iframe src="//www.youtube.com/embed/123?wmode=transparent" type="text/html" title="YouTube embed" width="100%" height="295" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="fullscreen; picture-in-picture" frameborder="0" allowfullscreen></iframe><br>Enjoy!';
 		$this->assertSame($expected, $result);
 	}
 
