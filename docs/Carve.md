@@ -9,12 +9,8 @@ the same converter pipeline, profiles, and safe-mode semantics.
 ## Installation
 
 ```bash
-composer require markup-carve/carve-php:dev-main
+composer require markup-carve/carve-php
 ```
-
-> [!NOTE]
-> Carve-PHP currently ships only a `dev-main` branch (no tagged release yet), so it must be
-> required with an explicit `dev-main` constraint.
 
 ## Basic Usage
 
@@ -70,7 +66,7 @@ $this->addHelper('Markup.Carve', [
 ]);
 ```
 
-You can also create custom profiles using the `Carve\Profile` class.
+You can also create custom profiles using the `MarkupCarve\Carve\Profile` class.
 
 ## CarveView - Render .carve Templates
 
@@ -98,7 +94,30 @@ You can use all Carve features:
 - `Code blocks`
 ```
 
-View variables are available for substitution using `{{varName}}` syntax.
+### Variable Substitution
+
+Set view variables in your controller as usual:
+
+```php
+$this->set('username', 'John');
+```
+
+Inside the `.carve` template, reference them with `{{varName}}` (no spaces inside the braces):
+
+```carve
+# Welcome, {{username}}!
+```
+
+Notes:
+
+- Only scalar values and objects implementing `__toString()` are substituted; other values
+  (arrays, plain objects) leave the placeholder untouched in the output.
+- Substitution is plain text replacement and happens *before* Carve conversion - a value
+  containing Carve syntax will be parsed as markup.
+
+> [!WARNING]
+> Keep `safeMode` enabled (default) when substituted values may contain user input,
+> so injected raw HTML gets escaped and dangerous URLs are filtered.
 
 ## Write Your Own Converter
 

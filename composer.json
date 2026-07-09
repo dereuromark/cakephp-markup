@@ -32,10 +32,10 @@
 		"dereuromark/media-embed": "^0.7",
 		"fig-r/psr2r-sniffer": "dev-master",
 		"league/commonmark": "^1.5 || ^2.0",
+		"markup-carve/carve-php": "^0.1.1",
 		"mjohnson/decoda": "^6.12",
 		"php-collective/djot": "^0.1.30",
-		"phpunit/phpunit": "^11.5 || ^12.1 || ^13.0",
-		"markup-carve/carve-php": "dev-main"
+		"phpunit/phpunit": "^11.5 || ^12.1 || ^13.0"
 	},
 	"minimum-stability": "stable",
 	"prefer-stable": true,

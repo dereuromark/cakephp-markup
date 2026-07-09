@@ -3,8 +3,8 @@
 namespace Markup\Carve;
 
 use Cake\Core\InstanceConfigTrait;
-use Carve\CarveConverter;
-use Carve\Profile;
+use MarkupCarve\Carve\CarveConverter;
+use MarkupCarve\Carve\Profile;
 
 /**
  * Carve markup converter using markup-carve/carve-php.
@@ -24,9 +24,9 @@ class CarveMarkup implements CarveInterface {
 	 * Cached converter, keyed by the hash of options used to build it.
 	 * Per-call options that differ from the cached key trigger a rebuild,
 	 * preventing a `safeMode=false` instance from serving a later call that
-	 * requested `safeMode=true` — a real risk in long-lived FPM/queue workers.
+	 * requested `safeMode=true` - a real risk in long-lived FPM/queue workers.
 	 *
-	 * @var \Carve\CarveConverter|null
+	 * @var \MarkupCarve\Carve\CarveConverter|null
 	 */
 	protected ?CarveConverter $converter = null;
 
@@ -80,7 +80,7 @@ class CarveMarkup implements CarveInterface {
 	/**
 	 * @param array<string, mixed> $options
 	 *
-	 * @return \Carve\CarveConverter
+	 * @return \MarkupCarve\Carve\CarveConverter
 	 */
 	protected function converter(array $options): CarveConverter {
 		$key = md5(serialize($options));
@@ -103,8 +103,8 @@ class CarveMarkup implements CarveInterface {
 	/**
 	 * Resolve a profile from configuration.
 	 *
-	 * @param \Carve\Profile|string|null $profile Profile instance, name, or null
-	 * @return \Carve\Profile|null
+	 * @param \MarkupCarve\Carve\Profile|string|null $profile Profile instance, name, or null
+	 * @return \MarkupCarve\Carve\Profile|null
 	 */
 	protected function resolveProfile(Profile|string|null $profile): ?Profile {
 		if ($profile instanceof Profile) {
