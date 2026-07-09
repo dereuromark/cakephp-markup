@@ -49,6 +49,22 @@ return [
 		'profile' => null,
 	],
 
+	// Read by Markup\View\Helper\CarveHelper.
+	'Carve' => [
+		// Converter class implementing Markup\Carve\CarveInterface.
+		// Default: Markup\Carve\CarveMarkup.
+		'converter' => \Markup\Carve\CarveMarkup::class,
+		// Append timing info to output. null = follow app `debug`. Default: null.
+		'debug' => null,
+		// Enable XSS protection (blocks dangerous URLs, filters attributes). Default: true.
+		'safeMode' => true,
+		// Output XHTML-compatible markup. Default: false.
+		'xhtml' => false,
+		// Profile name ('full', 'article', 'comment', 'minimal') or Profile instance that
+		// restricts which markup features are allowed. null = all features. Default: null.
+		'profile' => null,
+	],
+
 	// Read by Markup\View\Helper\MarkdownHelper.
 	'Markdown' => [
 		// Converter class implementing Markup\Markdown\MarkdownInterface.

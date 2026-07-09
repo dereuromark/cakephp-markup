@@ -85,7 +85,30 @@ You can use all djot features:
 - `Code blocks`
 ```
 
-View variables are available for substitution using `{{varName}}` syntax.
+### Variable Substitution
+
+Set view variables in your controller as usual:
+
+```php
+$this->set('username', 'John');
+```
+
+Inside the `.djot` template, reference them with `{{varName}}` (no spaces inside the braces):
+
+```djot
+# Welcome, {{username}}!
+```
+
+Notes:
+
+- Only scalar values and objects implementing `__toString()` are substituted; other values
+  (arrays, plain objects) leave the placeholder untouched in the output.
+- Substitution is plain text replacement and happens *before* Djot conversion - a value
+  containing Djot syntax will be parsed as markup.
+
+> [!WARNING]
+> Keep `safeMode` enabled (default) when substituted values may contain user input,
+> so injected raw HTML gets escaped and dangerous URLs are filtered.
 
 ## Write Your Own Converter
 
@@ -98,5 +121,5 @@ Implement the `DjotInterface` and configure it:
 ],
 ```
 
-This allows full customization of the Jdot conversion process.
-See the cookbook in the Jdot library.
+This allows full customization of the Djot conversion process.
+See the cookbook in the Djot library.
