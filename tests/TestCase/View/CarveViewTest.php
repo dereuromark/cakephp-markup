@@ -71,7 +71,7 @@ class CarveViewTest extends TestCase {
 
 This is *bold* and `code`.
 CARVE;
-		file_put_contents($this->testTemplatePath . 'test.carve', $templateContent);
+		file_put_contents($this->testTemplatePath . 'test.crv', $templateContent);
 
 		$this->view->setTemplatePath('');
 		$this->view->setTemplate('test');
@@ -91,7 +91,7 @@ CARVE;
 
 Your email is {{email}}.
 CARVE;
-		file_put_contents($this->testTemplatePath . 'vars.carve', $templateContent);
+		file_put_contents($this->testTemplatePath . 'vars.crv', $templateContent);
 
 		$this->view->setTemplatePath('');
 		$this->view->setTemplate('vars');
@@ -112,7 +112,7 @@ CARVE;
 
 A [dangerous link](javascript:alert('xss')).
 CARVE;
-		file_put_contents($this->testTemplatePath . 'safe.carve', $templateContent);
+		file_put_contents($this->testTemplatePath . 'safe.crv', $templateContent);
 
 		$this->view->setConfig('safeMode', true);
 		$this->view->setTemplatePath('');
@@ -123,7 +123,7 @@ CARVE;
 	}
 
 	/**
-	 * Global `Carve` Configure values must apply to direct `.carve` rendering.
+	 * Global `Carve` Configure values must apply to direct `.crv` rendering.
 	 *
 	 * @return void
 	 */
@@ -142,7 +142,7 @@ CARVE;
 		$reflection = new ReflectionClass($view);
 		$property = $reflection->getProperty('_ext');
 
-		$this->assertSame('.carve', $property->getValue($view));
+		$this->assertSame('.crv', $property->getValue($view));
 	}
 
 	/**
