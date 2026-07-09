@@ -68,9 +68,9 @@ $this->addHelper('Markup.Carve', [
 
 You can also create custom profiles using the `MarkupCarve\Carve\Profile` class.
 
-## CarveView - Render .carve Templates
+## CarveView - Render .crv Templates
 
-You can render `.carve` files directly as templates:
+You can render `.crv` files directly as templates:
 
 ```php
 // In your controller
@@ -80,12 +80,12 @@ public function documentation(): void
 }
 ```
 
-Create templates with `.carve` extension (e.g., `templates/Pages/documentation.carve`):
+Create templates with the `.crv` extension (e.g., `templates/Pages/documentation.crv`):
 
 ```carve
 # Welcome, {{username}}!
 
-This page was rendered from a `.carve` template file.
+This page was rendered from a `.crv` template file.
 
 You can use all Carve features:
 
@@ -102,7 +102,7 @@ Set view variables in your controller as usual:
 $this->set('username', 'John');
 ```
 
-Inside the `.carve` template, reference them with `{{varName}}` (no spaces inside the braces):
+Inside the `.crv` template, reference them with `{{varName}}` (no spaces inside the braces):
 
 ```carve
 # Welcome, {{username}}!

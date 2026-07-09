@@ -11,10 +11,10 @@ use Markup\Carve\CarveInterface;
 use Markup\Carve\CarveMarkup;
 
 /**
- * CarveView allows rendering `.carve` template files directly.
+ * CarveView allows rendering `.crv` template files directly.
  *
  * Carve is a post-Markdown lightweight markup language with visual mnemonics and
- * human-centered design. This view class lets you use `.carve` files as templates
+ * human-centered design. This view class lets you use `.crv` files as templates
  * that get converted to HTML.
  *
  * ## Usage
@@ -32,8 +32,8 @@ use Markup\Carve\CarveMarkup;
  * }
  * ```
  *
- * Then create templates with `.carve` extension:
- * `templates/Pages/documentation.carve`
+ * Then create templates with the `.crv` extension:
+ * `templates/Pages/documentation.crv`
  *
  * ## Variable Substitution
  *
@@ -53,11 +53,11 @@ use Markup\Carve\CarveMarkup;
 class CarveView extends View {
 
 	/**
-	 * File extension for Carve templates.
+	 * File extension for Carve templates, `.crv` per the Carve spec.
 	 *
 	 * @var string
 	 */
-	protected string $_ext = '.carve';
+	protected string $_ext = '.crv';
 
 	/**
 	 * @var \Markup\Carve\CarveInterface|null
@@ -77,7 +77,7 @@ class CarveView extends View {
 	 *
 	 * Merges the global `Carve` Configure values as defaults so that app-level
 	 * settings (custom `converter`, `profile`, `safeMode`, ...) apply when
-	 * rendering `.carve` templates. Explicit view options still win.
+	 * rendering `.crv` templates. Explicit view options still win.
 	 *
 	 * @param \Cake\Http\ServerRequest|null $request Request instance.
 	 * @param \Cake\Http\Response|null $response Response instance.
