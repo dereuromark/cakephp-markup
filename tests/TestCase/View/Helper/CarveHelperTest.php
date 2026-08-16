@@ -63,6 +63,24 @@ TEXT;
 	/**
 	 * @return void
 	 */
+	public function testText(): void {
+		$result = $this->helper->text('Some *bold* text with <unsafe>.');
+
+		$this->assertSame('Some bold text with <unsafe>.', $result);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testMarkdown(): void {
+		$result = $this->helper->markdown("# Heading\n\nSome /italic/ text.");
+
+		$this->assertSame("# Heading\n\nSome *italic* text.", $result);
+	}
+
+	/**
+	 * @return void
+	 */
 	public function testConvertQuote() {
 		$text = <<<'TEXT'
 Some

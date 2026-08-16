@@ -90,6 +90,30 @@ class CarveHelper extends Helper {
 	}
 
 	/**
+	 * Convert Carve markup to plain text.
+	 *
+	 * The returned text is not HTML-safe. Escape it with h() before inserting it into HTML.
+	 *
+	 * @param string $text Carve markup text.
+	 * @param array<string, mixed> $options Conversion options.
+	 * @return string Converted plain text.
+	 */
+	public function text(string $text, array $options = []): string {
+		return trim($this->_getConverter()->toText($text, $options));
+	}
+
+	/**
+	 * Convert Carve markup to Markdown.
+	 *
+	 * @param string $text Carve markup text.
+	 * @param array<string, mixed> $options Conversion options.
+	 * @return string Converted Markdown.
+	 */
+	public function markdown(string $text, array $options = []): string {
+		return trim($this->_getConverter()->toMarkdown($text, $options));
+	}
+
+	/**
 	 * @return \Markup\Carve\CarveInterface
 	 */
 	protected function _getConverter() {

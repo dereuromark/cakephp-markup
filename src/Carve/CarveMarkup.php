@@ -4,6 +4,7 @@ namespace Markup\Carve;
 
 use Cake\Core\InstanceConfigTrait;
 use MarkupCarve\Carve\CarveConverter;
+use MarkupCarve\Carve\Parser\BlockParser;
 use MarkupCarve\Carve\Profile;
 
 /**
@@ -21,19 +22,26 @@ class CarveMarkup implements CarveInterface {
 	use InstanceConfigTrait;
 
 	/**
-	 * Cached converter, keyed by the hash of options used to build it.
-	 * Per-call options that differ from the cached key trigger a rebuild,
-	 * preventing a `safeMode=false` instance from serving a later call that
-	 * requested `safeMode=true` - a real risk in long-lived FPM/queue workers.
+	 * One cached converter per render target, plus the options hash it was
+	 * built from. Per-call options that differ from the cached hash rebuild
+	 * that target's converter, preventing a `safeMode=false` instance from
+	 * serving a later call that requested `safeMode=true` - a real risk in
+	 * long-lived FPM/queue workers.
 	 *
-	 * @var \MarkupCarve\Carve\CarveConverter|null
+	 * Holding one converter per target rather than one per option set keeps
+	 * the cache at three entries in a worker that renders with many different
+	 * option combinations.
+	 *
+	 * @var array<string, \MarkupCarve\Carve\CarveConverter>
 	 */
-	protected ?CarveConverter $converter = null;
+	protected array $converters = [];
 
 	/**
-	 * @var string|null
+	 * Options hash the cached converter of each target was built from.
+	 *
+	 * @var array<string, string>
 	 */
-	protected ?string $converterKey = null;
+	protected array $converterKeys = [];
 
 	/**
 	 * Default configuration.
@@ -72,32 +80,71 @@ class CarveMarkup implements CarveInterface {
 	public function convert(string $text, array $options = []): string {
 		$options += $this->getConfig();
 
-		$converter = $this->converter($options);
+		$converter = $this->converter('html', $options);
 
 		return $converter->convert($text);
 	}
 
 	/**
+	 * @param string $text
+	 * @param array<string, mixed> $options
+	 *
+	 * @return string
+	 */
+	public function toText(string $text, array $options = []): string {
+		$options += $this->getConfig();
+
+		$converter = $this->converter('text', $options);
+
+		return $converter->convert($text);
+	}
+
+	/**
+	 * @param string $text
+	 * @param array<string, mixed> $options
+	 *
+	 * @return string
+	 */
+	public function toMarkdown(string $text, array $options = []): string {
+		$options += $this->getConfig();
+
+		$converter = $this->converter('markdown', $options);
+
+		return $converter->convert($text);
+	}
+
+	/**
+	 * @param string $target
 	 * @param array<string, mixed> $options
 	 *
 	 * @return \MarkupCarve\Carve\CarveConverter
 	 */
-	protected function converter(array $options): CarveConverter {
+	protected function converter(string $target, array $options): CarveConverter {
 		$key = md5(serialize($options));
-		if (!($this->converter instanceof CarveConverter) || $this->converterKey !== $key) {
+		if (!isset($this->converters[$target]) || ($this->converterKeys[$target] ?? null) !== $key) {
 			$profile = $this->resolveProfile($options['profile'] ?? null);
-
-			$this->converter = new CarveConverter(
-				xhtml: $options['xhtml'] ?? false,
-				warnings: $options['warnings'] ?? false,
-				strict: $options['strict'] ?? false,
-				safeMode: $options['safeMode'] ?? true,
-				profile: $profile,
-			);
-			$this->converterKey = $key;
+			if ($target === 'html') {
+				$this->converters[$target] = new CarveConverter(
+					xhtml: $options['xhtml'] ?? false,
+					warnings: $options['warnings'] ?? false,
+					strict: $options['strict'] ?? false,
+					safeMode: $options['safeMode'] ?? true,
+					profile: $profile,
+				);
+			} else {
+				$parser = new BlockParser(
+					collectWarnings: $options['warnings'] ?? false,
+					strictMode: $options['strict'] ?? false,
+				);
+				$converter = $target === 'text'
+					? CarveConverter::plainText($parser)
+					: CarveConverter::markdown($parser);
+				$this->converters[$target] = $converter->setProfile($profile);
+			}
+			$this->converterKeys[$target] = $key;
 		}
 
-		return $this->converter;
+		return $this->converters[$target];
 	}
 
 	/**

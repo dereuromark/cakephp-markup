@@ -22,4 +22,22 @@ interface CarveInterface {
 	 */
 	public function convert(string $text, array $options = []): string;
 
+	/**
+	 * Convert Carve markup to plain text.
+	 *
+	 * @param string $text
+	 * @param array<string, mixed> $options
+	 * @return string
+	 */
+	public function toText(string $text, array $options = []): string;
+
+	/**
+	 * Convert Carve markup to Markdown.
+	 *
+	 * @param string $text
+	 * @param array<string, mixed> $options
+	 * @return string
+	 */
+	public function toMarkdown(string $text, array $options = []): string;
+
 }
