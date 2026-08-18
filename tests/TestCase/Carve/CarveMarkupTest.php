@@ -5,6 +5,7 @@ namespace Markup\Test\TestCase\Carve;
 use Cake\Core\Configure;
 use Cake\TestSuite\TestCase;
 use Markup\Carve\CarveMarkup;
+use ReflectionProperty;
 
 class CarveMarkupTest extends TestCase {
 
@@ -67,6 +68,59 @@ TEXT;
 		// Carve uses slashes as a visual mnemonic for emphasis (italic).
 		$result = $this->carve->convert('Some /italic/ text.');
 		$this->assertStringContainsString('<em>italic</em>', $result);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testToTextStripsMarkup(): void {
+		$result = $this->carve->toText("# Heading\n\nSome /italic/ and *bold* text.");
+
+		$this->assertSame("Heading\n\nSome italic and bold text.\n", $result);
+		$this->assertStringNotContainsString('#', $result);
+		$this->assertStringNotContainsString('/', $result);
+	}
+
+	/**
+	 * @return void
+	 */
+	public function testToMarkdownRoundTripsHeadingAndEmphasis(): void {
+		$result = $this->carve->toMarkdown("# Heading\n\nSome /italic/ text.");
+
+		$this->assertSame("# Heading\n\nSome *italic* text.\n", $result);
+	}
+
+	/**
+	 * A converter built for one target or one safe-mode setting must never
+	 * serve a call that asked for another. The cache holds one converter per
+	 * target and rebuilds it when the effective options change, so this is
+	 * asserted on the output rather than on the number of cached instances.
+	 *
+	 * @return void
+	 */
+	public function testConverterCacheIsSeparatedByTargetAndSafeMode(): void {
+		$text = 'Some `<b>raw html</b>`{=html} inline.';
+
+		$unsafe = $this->carve->convert($text, ['safeMode' => false]);
+		$safe = $this->carve->convert($text, ['safeMode' => true]);
+
+		$this->assertStringContainsString('<b>raw html</b>', $unsafe);
+		$this->assertStringNotContainsString('<b>raw html</b>', $safe);
+
+		$html = $this->carve->convert('# Heading', ['safeMode' => true]);
+		$plain = $this->carve->toText('# Heading', ['safeMode' => true]);
+		$markdown = $this->carve->toMarkdown('# Heading', ['safeMode' => true]);
+
+		$this->assertStringContainsString('<h1', $html);
+		$this->assertStringNotContainsString('<h1', $plain);
+		$this->assertStringNotContainsString('#', $plain);
+		$this->assertStringContainsString('# Heading', $markdown);
+
+		$property = new ReflectionProperty($this->carve, 'converters');
+		$converters = $property->getValue($this->carve);
+
+		$this->assertCount(3, $converters, 'one converter per render target, not one per option set');
+		$this->assertCount(3, array_unique(array_map('spl_object_id', $converters)));
 	}
 
 	/**

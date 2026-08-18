@@ -30,6 +30,27 @@ TEXT;
 echo $this->Carve->convert($string);
 ```
 
+Convert Carve to plain text with `text()`. The result is not HTML-safe, so escape it when
+placing it in an HTML template:
+
+```php
+echo h($this->Carve->text('Some *bold* text.'));
+// Some bold text.
+```
+
+Convert Carve to canonical Markdown with `markdown()`:
+
+```php
+echo $this->Carve->markdown("# Heading\n\nSome /italic/ text.");
+// # Heading
+//
+// Some *italic* text.
+```
+
+At converter level, the corresponding methods are `CarveMarkup::toText()` and
+`CarveMarkup::toMarkdown()`. `safeMode` configures only HTML rendering; it does not sanitize
+plain-text or Markdown output.
+
 Carve uses visual mnemonics for inline formatting: `*bold*` for strong, `/italic/` for emphasis
 (the slashes lean like italic text), and `_underline_` for underline.
 
