@@ -140,7 +140,7 @@ DJOT;
 	public function testFileExtension(): void {
 		$view = new DjotView();
 		$reflection = new ReflectionClass($view);
-		$property = $reflection->getProperty('_ext');
+		$property = $reflection->getProperty('ext');
 
 		$this->assertSame('.djot', $property->getValue($view));
 	}

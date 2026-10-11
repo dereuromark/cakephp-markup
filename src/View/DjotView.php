@@ -56,7 +56,7 @@ class DjotView extends View {
 	 *
 	 * @var string
 	 */
-	protected string $_ext = '.djot';
+	protected string $ext = '.djot';
 
 	/**
 	 * @var \Markup\Djot\DjotInterface|null
@@ -66,7 +66,7 @@ class DjotView extends View {
 	/**
 	 * @var array<string, mixed>
 	 */
-	protected array $_defaultConfig = [
+	protected array $defaultConfig = [
 		'safeMode' => true,
 		'converter' => DjotMarkup::class,
 	];
@@ -100,7 +100,7 @@ class DjotView extends View {
 	 * @param array<string, mixed> $dataForView View variables.
 	 * @return string Rendered HTML output.
 	 */
-	protected function _evaluate(string $templateFile, array $dataForView): string {
+	protected function evaluate(string $templateFile, array $dataForView): string {
 		$content = file_get_contents($templateFile);
 		if ($content === false) {
 			return '';

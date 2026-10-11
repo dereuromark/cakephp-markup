@@ -14,7 +14,7 @@ abstract class Highlighter implements HighlighterInterface {
 	/**
 	 * @var array<string, mixed>
 	 */
-	protected array $_defaultConfig = [];
+	protected array $defaultConfig = [];
 
 	/**
 	 * @param array<string, mixed> $config
@@ -28,8 +28,8 @@ abstract class Highlighter implements HighlighterInterface {
 	 * @return string
 	 */
 	protected function _prepare($string) {
-		if ($this->_config['tabToSpaces']) {
-			$string = (string)preg_replace('/\t/', str_repeat(' ', $this->_config['tabToSpaces']), $string);
+		if ($this->config['tabToSpaces']) {
+			$string = (string)preg_replace('/\t/', str_repeat(' ', $this->config['tabToSpaces']), $string);
 		}
 
 		return $string;

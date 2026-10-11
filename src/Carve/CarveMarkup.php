@@ -57,7 +57,7 @@ class CarveMarkup implements CarveInterface {
 	 *
 	 * @var array<string, mixed>
 	 */
-	protected array $_defaultConfig = [
+	protected array $defaultConfig = [
 		'safeMode' => true,
 		'xhtml' => false,
 		'strict' => false,
