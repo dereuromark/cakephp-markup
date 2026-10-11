@@ -6,7 +6,6 @@ use Cake\Core\Configure;
 use Cake\View\Helper;
 use Cake\View\View;
 use InvalidArgumentException;
-use Markup\Bbcode\BbcodeInterface;
 use Markup\Bbcode\DecodaBbcode;
 
 /**
@@ -17,7 +16,7 @@ class BbcodeHelper extends Helper {
 	/**
 	 * @var \Markup\Bbcode\BbcodeInterface|null
 	 */
-	protected ?BbcodeInterface $_converter = null;
+	protected $_converter;
 
 	/**
 	 * @var array<string, mixed>
@@ -30,7 +29,7 @@ class BbcodeHelper extends Helper {
 	/**
 	 * @var float
 	 */
-	protected float $_time = 0.0;
+	protected $_time = 0.0;
 
 	/**
 	 * Constructor
@@ -75,7 +74,7 @@ class BbcodeHelper extends Helper {
 	/**
 	 * @return \Markup\Bbcode\BbcodeInterface
 	 */
-	protected function _getConverter(): BbcodeInterface {
+	protected function _getConverter() {
 		if ($this->_converter !== null) {
 			return $this->_converter;
 		}
@@ -94,14 +93,14 @@ class BbcodeHelper extends Helper {
 	/**
 	 * @return void
 	 */
-	protected function _startTimer(): void {
+	protected function _startTimer() {
 		$this->_time = microtime(true);
 	}
 
 	/**
 	 * @return float
 	 */
-	protected function _endTimer(): float {
+	protected function _endTimer() {
 		$now = microtime(true);
 
 		return $now - $this->_time;
@@ -111,7 +110,7 @@ class BbcodeHelper extends Helper {
 	 * @param float $time
 	 * @return string
 	 */
-	protected function _timeElapsedFormatted(float $time): string {
+	protected function _timeElapsedFormatted($time) {
 		return '<!-- ' . number_format($time * 1000, 3) . 'ms -->';
 	}
 

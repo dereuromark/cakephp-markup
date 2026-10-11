@@ -5,7 +5,7 @@ The `Markup.Djot` helper uses [php-collective/djot](https://github.com/php-colle
 After [installation](./installation.md), load the helper in `AppView::initialize()`:
 
 ```php
-$this->loadHelper('Markup.Djot', ['profile' => 'comment']);
+$this->loadHelper('Markup.Djot');
 ```
 
 In a PHP template:

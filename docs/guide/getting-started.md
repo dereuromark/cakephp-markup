@@ -12,7 +12,7 @@ public function initialize(): void {
 }
 ```
 
-In any existing PHP template, such as `templates/Pages/home.php`:
+Create `templates/Pages/markup.php` in a standard CakePHP application:
 
 ```php
 <?php
@@ -21,7 +21,7 @@ $source = '# Welcome' . "\n\n" . 'Some **bold** text and *italic* text.';
 <div class="article"><?= $this->Markdown->convert($source) ?></div>
 ```
 
-Load that page. You should see a Welcome heading, bold text and italic text. The converter escapes raw HTML and blocks unsafe link schemes by default, so do not wrap its HTML output in `h()`.
+Open `/pages/markup`, using the standard Pages route. For an application with custom routes, use an existing action and its matching PHP template. You should see a Welcome heading, bold text and italic text. The converter escapes raw HTML and blocks unsafe link schemes by default, so do not wrap its HTML output in `h()`.
 
 Conversion options can be supplied for a single call:
 

@@ -4,7 +4,6 @@ namespace Markup\Markdown;
 
 use Cake\Core\InstanceConfigTrait;
 use League\CommonMark\CommonMarkConverter;
-use League\CommonMark\ConverterInterface;
 use League\CommonMark\Environment as LegacyEnvironment;
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
@@ -48,8 +47,9 @@ class CommonMarkMarkdown implements MarkdownInterface {
 	 */
 	public function convert(string $text, array $options = []): string {
 		$options += $this->getConfig();
+		unset($options['converter'], $options['debug']);
 		$converter = $this->converter($options);
-		if ($converter instanceof ConverterInterface) {
+		if (method_exists($converter, 'convert')) {
 			return (string)$converter->convert($text);
 		}
 

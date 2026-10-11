@@ -6,7 +6,6 @@ use Cake\Core\Configure;
 use Cake\View\Helper;
 use Cake\View\View;
 use InvalidArgumentException;
-use Markup\Carve\CarveInterface;
 use Markup\Carve\CarveMarkup;
 
 /**
@@ -23,7 +22,7 @@ class CarveHelper extends Helper {
 	/**
 	 * @var \Markup\Carve\CarveInterface|null
 	 */
-	protected ?CarveInterface $_converter = null;
+	protected $_converter;
 
 	/**
 	 * Default configuration.
@@ -48,7 +47,7 @@ class CarveHelper extends Helper {
 	/**
 	 * @var float
 	 */
-	protected float $_time = 0.0;
+	protected $_time = 0.0;
 
 	/**
 	 * Constructor
@@ -117,7 +116,7 @@ class CarveHelper extends Helper {
 	/**
 	 * @return \Markup\Carve\CarveInterface
 	 */
-	protected function _getConverter(): CarveInterface {
+	protected function _getConverter() {
 		if ($this->_converter !== null) {
 			return $this->_converter;
 		}
@@ -136,14 +135,14 @@ class CarveHelper extends Helper {
 	/**
 	 * @return void
 	 */
-	protected function _startTimer(): void {
+	protected function _startTimer() {
 		$this->_time = microtime(true);
 	}
 
 	/**
 	 * @return float
 	 */
-	protected function _endTimer(): float {
+	protected function _endTimer() {
 		$now = microtime(true);
 
 		return $now - $this->_time;
@@ -153,7 +152,7 @@ class CarveHelper extends Helper {
 	 * @param float $time
 	 * @return string
 	 */
-	protected function _timeElapsedFormatted(float $time): string {
+	protected function _timeElapsedFormatted($time) {
 		return '<!-- ' . number_format($time * 1000, 3) . 'ms -->';
 	}
 

@@ -4,7 +4,7 @@ Helpers convert strings inside your normal PHP templates. `DjotView` and `CarveV
 
 ## A standalone document
 
-For Djot, in a controller action:
+For Djot, add this action to `PagesController`:
 
 ```php
 public function documentation(): void {
@@ -15,7 +15,13 @@ public function documentation(): void {
 }
 ```
 
-Create `templates/Pages/documentation.djot` when using `PagesController`:
+Connect the action in `config/routes.php`, inside your application scope:
+
+```php
+$routes->connect('/documentation', ['controller' => 'Pages', 'action' => 'documentation']);
+```
+
+Create `templates/Pages/documentation.djot`:
 
 ```text
 # Welcome, {{username}}!
@@ -31,7 +37,7 @@ For Carve, select `Markup.Carve` instead and create `templates/Pages/documentati
 This is *bold*, /italic/ and _underline_ text.
 ```
 
-These examples disable the layout because the view also looks for layouts and elements with its markup extension. A normal `templates/layout/default.php` is not used by those views. To retain your existing PHP layout, use a helper in a PHP template.
+Open `/documentation`. The response is an HTML fragment containing the converted document. Automatic layouts are unsupported: these views do not substitute CakePHP content blocks into markup layouts, so keep `disableAutoLayout()`. To retain your existing PHP layout and full document wrapper, use a helper in a PHP template.
 
 ## Variables and configuration
 

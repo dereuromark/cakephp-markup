@@ -7,7 +7,6 @@ use Cake\View\Helper;
 use Cake\View\View;
 use InvalidArgumentException;
 use Markup\Markdown\CommonMarkMarkdown;
-use Markup\Markdown\MarkdownInterface;
 
 /**
  * MarkdownHelper - Converts Markdown text to HTML.
@@ -30,7 +29,7 @@ class MarkdownHelper extends Helper {
 	/**
 	 * @var \Markup\Markdown\MarkdownInterface|null
 	 */
-	protected ?MarkdownInterface $_converter = null;
+	protected $_converter;
 
 	/**
 	 * @var array<string, mixed>
@@ -43,7 +42,7 @@ class MarkdownHelper extends Helper {
 	/**
 	 * @var float
 	 */
-	protected float $_time = 0.0;
+	protected $_time = 0.0;
 
 	/**
 	 * Constructor
@@ -83,7 +82,7 @@ class MarkdownHelper extends Helper {
 	/**
 	 * @return \Markup\Markdown\MarkdownInterface
 	 */
-	protected function _getConverter(): MarkdownInterface {
+	protected function _getConverter() {
 		if ($this->_converter !== null) {
 			return $this->_converter;
 		}
@@ -102,14 +101,14 @@ class MarkdownHelper extends Helper {
 	/**
 	 * @return void
 	 */
-	protected function _startTimer(): void {
+	protected function _startTimer() {
 		$this->_time = microtime(true);
 	}
 
 	/**
 	 * @return float
 	 */
-	protected function _endTimer(): float {
+	protected function _endTimer() {
 		$now = microtime(true);
 
 		return $now - $this->_time;
@@ -119,7 +118,7 @@ class MarkdownHelper extends Helper {
 	 * @param float $time
 	 * @return string
 	 */
-	protected function _timeElapsedFormatted(float $time): string {
+	protected function _timeElapsedFormatted($time) {
 		return '<!-- ' . number_format($time * 1000, 3) . 'ms -->';
 	}
 
