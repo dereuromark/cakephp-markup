@@ -4,6 +4,7 @@ namespace Markup\Markdown;
 
 use Cake\Core\InstanceConfigTrait;
 use League\CommonMark\CommonMarkConverter;
+use League\CommonMark\ConverterInterface;
 use League\CommonMark\Environment as LegacyEnvironment;
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
@@ -16,9 +17,7 @@ class CommonMarkMarkdown implements MarkdownInterface {
 	use InstanceConfigTrait;
 
 	/**
-	 * Cached converter, keyed by the hash of options used to build it.
-	 * Per-call options that differ from the cached key trigger a rebuild,
-	 * preventing the unsafe variant from being served when callers ask for safe.
+	 * Cache the converter for the current options and rebuild when they change.
 	 *
 	 * @var \League\CommonMark\MarkdownConverterInterface|null
 	 */
@@ -48,16 +47,17 @@ class CommonMarkMarkdown implements MarkdownInterface {
 	 * @return string
 	 */
 	public function convert(string $text, array $options = []): string {
+		$options += $this->getConfig();
 		$converter = $this->converter($options);
+		if ($converter instanceof ConverterInterface) {
+			return (string)$converter->convert($text);
+		}
 
 		return (string)$converter->convertToHtml($text);
 	}
 
 	/**
-	 * Returns the converter instance, rebuilding it when the supplied options
-	 * differ from those that produced the cached one. Without this check, the
-	 * first call would pin safe/unsafe behavior for the lifetime of the
-	 * instance — a real risk in long-lived FPM/queue workers.
+	 * Reuse a converter only when its options match the current call.
 	 *
 	 * @param array<string, mixed> $options
 	 *

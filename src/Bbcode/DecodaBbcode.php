@@ -48,6 +48,7 @@ class DecodaBbcode implements BbcodeInterface {
 	 * @return string
 	 */
 	public function convert(string $text, array $options = []): string {
+		$options += $this->getConfig();
 		$options += [
 			'escape' => true,
 		];
@@ -67,8 +68,6 @@ class DecodaBbcode implements BbcodeInterface {
 	 * @return \Decoda\Decoda
 	 */
 	protected function converter(string $text, array $options = []): Decoda {
-		$options += [];
-
 		$this->converter = new Decoda($text, $options);
 		// For now lets use basic defaults
 		$this->converter->addFilter(new DefaultFilter());

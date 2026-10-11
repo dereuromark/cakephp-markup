@@ -6,6 +6,7 @@ use Cake\Core\Configure;
 use Cake\View\Helper;
 use Cake\View\View;
 use InvalidArgumentException;
+use Markup\Djot\DjotInterface;
 use Markup\Djot\DjotMarkup;
 
 /**
@@ -21,7 +22,7 @@ class DjotHelper extends Helper {
 	/**
 	 * @var \Markup\Djot\DjotInterface|null
 	 */
-	protected $_converter;
+	protected ?DjotInterface $_converter = null;
 
 	/**
 	 * Default configuration.
@@ -46,7 +47,7 @@ class DjotHelper extends Helper {
 	/**
 	 * @var float
 	 */
-	protected $_time = 0.0;
+	protected float $_time = 0.0;
 
 	/**
 	 * Constructor
@@ -91,7 +92,7 @@ class DjotHelper extends Helper {
 	/**
 	 * @return \Markup\Djot\DjotInterface
 	 */
-	protected function _getConverter() {
+	protected function _getConverter(): DjotInterface {
 		if ($this->_converter !== null) {
 			return $this->_converter;
 		}
@@ -110,14 +111,14 @@ class DjotHelper extends Helper {
 	/**
 	 * @return void
 	 */
-	protected function _startTimer() {
+	protected function _startTimer(): void {
 		$this->_time = microtime(true);
 	}
 
 	/**
 	 * @return float
 	 */
-	protected function _endTimer() {
+	protected function _endTimer(): float {
 		$now = microtime(true);
 
 		return $now - $this->_time;
@@ -127,7 +128,7 @@ class DjotHelper extends Helper {
 	 * @param float $time
 	 * @return string
 	 */
-	protected function _timeElapsedFormatted($time) {
+	protected function _timeElapsedFormatted(float $time): string {
 		return '<!-- ' . number_format($time * 1000, 3) . 'ms -->';
 	}
 

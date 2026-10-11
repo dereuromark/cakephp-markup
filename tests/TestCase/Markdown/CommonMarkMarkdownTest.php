@@ -125,4 +125,10 @@ TXT;
 		$this->assertStringNotContainsString('&lt;b&gt;', $second);
 	}
 
+	public function testConfiguredOptionsApplyAndPerCallOptionsOverrideThem(): void {
+		$converter = new CommonMarkMarkdown(['escape' => false]);
+		$this->assertStringContainsString('<b>Text</b>', $converter->convert('<b>Text</b>'));
+		$this->assertStringContainsString('&lt;b&gt;Text&lt;/b&gt;', $converter->convert('<b>Text</b>', ['escape' => true]));
+	}
+
 }

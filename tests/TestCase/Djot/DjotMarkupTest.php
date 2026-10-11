@@ -4,6 +4,7 @@ namespace Markup\Test\TestCase\Djot;
 
 use Cake\Core\Configure;
 use Cake\TestSuite\TestCase;
+use InvalidArgumentException;
 use Markup\Djot\DjotMarkup;
 
 class DjotMarkupTest extends TestCase {
@@ -131,6 +132,12 @@ TEXT;
 		$result = $this->djot->convert($text, ['safeMode' => false]);
 		$this->assertStringContainsString('<h1>Header</h1>', $result);
 		$this->assertStringContainsString('<b>raw html</b>', $result);
+	}
+
+	public function testUnknownProfileIsRejected(): void {
+		$this->expectException(InvalidArgumentException::class);
+
+		$this->djot->convert('Text', ['profile' => 'comments']);
 	}
 
 }

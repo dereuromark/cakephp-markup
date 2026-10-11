@@ -91,4 +91,10 @@ TEXT;
 		$this->assertSame($expected, $result);
 	}
 
+	public function testConfiguredOptionsApplyAndPerCallOptionsOverrideThem(): void {
+		$converter = new DecodaBbcode(['escape' => false]);
+		$this->assertStringContainsString('<b>Text</b>', $converter->convert('<b>Text</b>'));
+		$this->assertStringContainsString('&lt;b&gt;Text&lt;/b&gt;', $converter->convert('<b>Text</b>', ['escape' => true]));
+	}
+
 }

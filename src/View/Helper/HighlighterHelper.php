@@ -5,6 +5,7 @@ namespace Markup\View\Helper;
 use Cake\Core\Configure;
 use Cake\View\Helper;
 use Cake\View\View;
+use Markup\Highlighter\HighlighterInterface;
 use Markup\Highlighter\PhpHighlighter;
 
 /**
@@ -15,7 +16,7 @@ class HighlighterHelper extends Helper {
 	/**
 	 * @var \Markup\Highlighter\HighlighterInterface|null
 	 */
-	protected $_highlighter;
+	protected ?HighlighterInterface $_highlighter = null;
 
 	/**
 	 * @var array<string, mixed>
@@ -28,7 +29,7 @@ class HighlighterHelper extends Helper {
 	/**
 	 * @var float
 	 */
-	protected $_time = 0.0;
+	protected float $_time = 0.0;
 
 	/**
 	 * Constructor
@@ -73,7 +74,7 @@ class HighlighterHelper extends Helper {
 	/**
 	 * @return \Markup\Highlighter\HighlighterInterface
 	 */
-	protected function _getHighlighter() {
+	protected function _getHighlighter(): HighlighterInterface {
 		if ($this->_highlighter !== null) {
 			return $this->_highlighter;
 		}
@@ -88,14 +89,14 @@ class HighlighterHelper extends Helper {
 	/**
 	 * @return void
 	 */
-	protected function _startTimer() {
+	protected function _startTimer(): void {
 		$this->_time = microtime(true);
 	}
 
 	/**
 	 * @return float
 	 */
-	protected function _endTimer() {
+	protected function _endTimer(): float {
 		$now = microtime(true);
 
 		return $now - $this->_time;
@@ -105,7 +106,7 @@ class HighlighterHelper extends Helper {
 	 * @param float $time
 	 * @return string
 	 */
-	protected function _timeElapsedFormatted($time) {
+	protected function _timeElapsedFormatted(float $time): string {
 		return '<!-- ' . number_format($time * 1000, 3) . 'ms -->';
 	}
 

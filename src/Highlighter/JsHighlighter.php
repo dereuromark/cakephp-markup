@@ -33,7 +33,7 @@ class JsHighlighter extends Highlighter {
 	public function highlight(string $text, array $options = []): string {
 		$options += $this->_config;
 
-		$text = $this->_prepare($text);
+		$text = $this->_prepare($text, $options);
 
 		if ($options['escape'] !== false) {
 			$text = h($text);
