@@ -39,7 +39,7 @@ Outside the view layer, the corresponding methods are `CarveMarkup::convert()`, 
 
 The adapter supports `safeMode`, `xhtml`, `strict`, `warnings` and `profile`, with defaults matching the [Djot adapter](./djot.md). Use `full`, `article`, `comment`, `minimal`, a `MarkupCarve\Carve\Profile` instance, or null. Unknown names, including an empty string, throw.
 
-The parent library strips dangerous URL schemes such as `javascript:`, `data:`, `vbscript:` and `file:` even with `safeMode` disabled. Keep safe mode enabled for untrusted input: it also escapes raw HTML and filters attributes. Plain-text and Markdown output still need handling appropriate to their destination.
+The parent library strips dangerous URL schemes such as `javascript:`, `data:`, `vbscript:` and `file:` even with `safeMode` disabled. Keep safe mode enabled for untrusted input: it also escapes raw HTML and filters attributes.
 
 Safe mode filters HTML output. It does not sanitize plain-text or Markdown output. Each output target has its own converter cache; changing call options rebuilds that target's converter.
 

@@ -15,10 +15,10 @@ public function documentation(): void {
 }
 ```
 
-Connect the action in `config/routes.php`, inside your application scope:
+Connect the action in `config/routes.php`, inside the application scope callback and before its `fallbacks()` call. The standard application names this callback argument `$builder`; use the name from your own routes file:
 
 ```php
-$routes->connect('/documentation', ['controller' => 'Pages', 'action' => 'documentation']);
+$builder->connect('/documentation', ['controller' => 'Pages', 'action' => 'documentation']);
 ```
 
 Create `templates/Pages/documentation.djot`:

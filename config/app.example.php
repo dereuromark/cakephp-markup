@@ -35,7 +35,7 @@ return [
 		'debug' => null,
 	],
 
-	// Read by Markup\View\Helper\DjotHelper.
+	// Read by Markup\View\Helper\DjotHelper and Markup\View\DjotView.
 	'Djot' => [
 		// Converter class implementing Markup\Djot\DjotInterface.
 		// Default: Markup\Djot\DjotMarkup.
@@ -54,7 +54,7 @@ return [
 		'profile' => null,
 	],
 
-	// Read by Markup\View\Helper\CarveHelper.
+	// Read by Markup\View\Helper\CarveHelper and Markup\View\CarveView.
 	'Carve' => [
 		// Converter class implementing Markup\Carve\CarveInterface.
 		// Default: Markup\Carve\CarveMarkup.
