@@ -3,6 +3,7 @@
 namespace Markup\Carve;
 
 use Cake\Core\InstanceConfigTrait;
+use InvalidArgumentException;
 use MarkupCarve\Carve\CarveConverter;
 use MarkupCarve\Carve\Parser\BlockParser;
 use MarkupCarve\Carve\Profile;
@@ -167,7 +168,7 @@ class CarveMarkup implements CarveInterface {
 			'article' => Profile::article(),
 			'comment' => Profile::comment(),
 			'minimal' => Profile::minimal(),
-			default => null,
+			default => throw new InvalidArgumentException('Unknown markup profile: ' . $profile),
 		};
 	}
 

@@ -14,23 +14,14 @@ A CakePHP plugin to
 - quickly convert Djot snippets.
 - quickly convert Carve snippets.
 
-This branch is for **CakePHP 5.1+**. See [version map](https://github.com/dereuromark/cakephp-markup/wiki#cakephp-version-map) for details.
-
-## Setup
-```
-composer require dereuromark/cakephp-markup
-```
-and
-```
-bin/cake plugin load Markup
-```
+See [composer.json](composer.json) for supported versions and the [version map](https://github.com/dereuromark/cakephp-markup/wiki#cakephp-version-map) for older branches.
 
 ## Demo
 https://sandbox.dereuromark.de/sandbox/markup-examples
 
 ## Usage
 
-See [Docs](/docs).
+Read the [documentation website](https://dereuromark.github.io/cakephp-markup/), starting with [Installation](https://dereuromark.github.io/cakephp-markup/guide/installation) and [Getting started](https://dereuromark.github.io/cakephp-markup/guide/getting-started).
 
 ## TODO
 - Add more highlighters (you can also just link your own here)

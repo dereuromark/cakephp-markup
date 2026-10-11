@@ -33,7 +33,13 @@ class JsHighlighter extends Highlighter {
 	public function highlight(string $text, array $options = []): string {
 		$options += $this->_config;
 
-		$text = $this->_prepare($text);
+		$tabToSpaces = $this->getConfig('tabToSpaces');
+		$this->setConfig('tabToSpaces', $options['tabToSpaces']);
+		try {
+			$text = $this->_prepare($text);
+		} finally {
+			$this->setConfig('tabToSpaces', $tabToSpaces);
+		}
 
 		if ($options['escape'] !== false) {
 			$text = h($text);

@@ -4,12 +4,12 @@
  * Markup Example Configuration
  *
  * Merge the keys below into your application's config/app.php (or
- * config/app_local.php) — do not replace the whole file, since this snippet
+ * config/app_local.php); do not replace the whole file, since this snippet
  * only contains this plugin's configuration. When copying entries that
  * reference imported classes, use fully-qualified class names or move the
  * `use` imports to the top of the target file. Customize the values as needed.
  *
- * Each markup helper reads its own top-level namespace via Configure and merges it as
+ * Each markup helper and document view reads its own top-level namespace via Configure and merges it as
  * defaults at construction time (helper options passed at load time still win). The
  * `debug` option defaults to null, which means it falls back to the app `debug` setting;
  * when truthy, the helper appends conversion timing to the output.
@@ -22,6 +22,8 @@ return [
 		'converter' => \Markup\Bbcode\DecodaBbcode::class,
 		// Append timing info to output. null = follow app `debug`. Default: null.
 		'debug' => null,
+		// Escape raw HTML by default. Disable only for trusted content.
+		'escape' => true,
 	],
 
 	// Read by Markup\View\Helper\HighlighterHelper.
@@ -33,7 +35,7 @@ return [
 		'debug' => null,
 	],
 
-	// Read by Markup\View\Helper\DjotHelper.
+	// Read by Markup\View\Helper\DjotHelper and Markup\View\DjotView.
 	'Djot' => [
 		// Converter class implementing Markup\Djot\DjotInterface.
 		// Default: Markup\Djot\DjotMarkup.
@@ -44,12 +46,15 @@ return [
 		'safeMode' => true,
 		// Output XHTML-compatible markup. Default: false.
 		'xhtml' => false,
+		// Report parser errors or collect warnings. Defaults: false.
+		'strict' => false,
+		'warnings' => false,
 		// Profile name ('full', 'article', 'comment', 'minimal') or Profile instance that
 		// restricts which markup features are allowed. null = all features. Default: null.
 		'profile' => null,
 	],
 
-	// Read by Markup\View\Helper\CarveHelper.
+	// Read by Markup\View\Helper\CarveHelper and Markup\View\CarveView.
 	'Carve' => [
 		// Converter class implementing Markup\Carve\CarveInterface.
 		// Default: Markup\Carve\CarveMarkup.
@@ -60,6 +65,9 @@ return [
 		'safeMode' => true,
 		// Output XHTML-compatible markup. Default: false.
 		'xhtml' => false,
+		// Report parser errors or collect warnings. Defaults: false.
+		'strict' => false,
+		'warnings' => false,
 		// Profile name ('full', 'article', 'comment', 'minimal') or Profile instance that
 		// restricts which markup features are allowed. null = all features. Default: null.
 		'profile' => null,
@@ -72,5 +80,8 @@ return [
 		'converter' => \Markup\Markdown\CommonMarkMarkdown::class,
 		// Append timing info to output. null = follow app `debug`. Default: null.
 		'debug' => null,
+		// Escape raw HTML and reject unsafe link schemes.
+		'escape' => true,
+		'allow_unsafe_links' => false,
 	],
 ];

@@ -44,4 +44,10 @@ class JsHighlighterTest extends TestCase {
 		$this->assertSame($expected, $result);
 	}
 
+	public function testPerCallTabWidthOverridesConfiguredWidth(): void {
+		$this->assertStringContainsString('a  b', $this->highlighter->highlight("a\tb", ['tabToSpaces' => 2]));
+		$this->assertStringContainsString("a\tb", $this->highlighter->highlight("a\tb", ['tabToSpaces' => 0]));
+		$this->assertStringContainsString('a    b', $this->highlighter->highlight("a\tb"));
+	}
+
 }

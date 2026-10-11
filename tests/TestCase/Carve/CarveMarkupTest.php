@@ -4,6 +4,7 @@ namespace Markup\Test\TestCase\Carve;
 
 use Cake\Core\Configure;
 use Cake\TestSuite\TestCase;
+use InvalidArgumentException;
 use Markup\Carve\CarveMarkup;
 use ReflectionProperty;
 
@@ -194,6 +195,12 @@ TEXT;
 		$result = $this->carve->convert($text, ['safeMode' => false]);
 		$this->assertStringContainsString('<h1>Header</h1>', $result);
 		$this->assertStringContainsString('<b>raw html</b>', $result);
+	}
+
+	public function testUnknownProfileIsRejected(): void {
+		$this->expectException(InvalidArgumentException::class);
+
+		$this->carve->convert('Text', ['profile' => 'comments']);
 	}
 
 }

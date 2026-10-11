@@ -5,6 +5,7 @@ namespace Markup\Djot;
 use Cake\Core\InstanceConfigTrait;
 use Djot\DjotConverter;
 use Djot\Profile;
+use InvalidArgumentException;
 
 /**
  * Djot markup converter using php-collective/djot.
@@ -19,10 +20,7 @@ class DjotMarkup implements DjotInterface {
 	use InstanceConfigTrait;
 
 	/**
-	 * Cached converter, keyed by the hash of options used to build it.
-	 * Per-call options that differ from the cached key trigger a rebuild,
-	 * preventing a `safeMode=false` instance from serving a later call that
-	 * requested `safeMode=true` — a real risk in long-lived FPM/queue workers.
+	 * Cache the converter for the current options and rebuild when they change.
 	 *
 	 * @var \Djot\DjotConverter|null
 	 */
@@ -118,7 +116,7 @@ class DjotMarkup implements DjotInterface {
 			'article' => Profile::article(),
 			'comment' => Profile::comment(),
 			'minimal' => Profile::minimal(),
-			default => null,
+			default => throw new InvalidArgumentException('Unknown markup profile: ' . $profile),
 		};
 	}
 
