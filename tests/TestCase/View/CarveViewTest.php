@@ -140,7 +140,7 @@ CARVE;
 	public function testFileExtension(): void {
 		$view = new CarveView();
 		$reflection = new ReflectionClass($view);
-		$property = $reflection->getProperty('_ext');
+		$property = $reflection->getProperty('ext');
 
 		$this->assertSame('.crv', $property->getValue($view));
 	}

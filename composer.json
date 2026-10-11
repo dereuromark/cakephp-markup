@@ -25,8 +25,8 @@
 		"source": "https://github.com/dereuromark/cakephp-markup"
 	},
 	"require": {
-		"php": ">=8.2",
-		"cakephp/cakephp": "^5.1.1"
+		"php": ">=8.5",
+		"cakephp/cakephp": "^6.0@dev"
 	},
 	"conflict": {
 		"dereuromark/media-embed": "<1.0"
@@ -38,9 +38,9 @@
 		"markup-carve/carve-php": "^0.1.1",
 		"mjohnson/decoda": "^6.12",
 		"php-collective/djot": "^0.1.30",
-		"phpunit/phpunit": "^11.5 || ^12.1 || ^13.0"
+		"phpunit/phpunit": "^13.0"
 	},
-	"minimum-stability": "stable",
+	"minimum-stability": "dev",
 	"prefer-stable": true,
 	"autoload": {
 		"psr-4": {

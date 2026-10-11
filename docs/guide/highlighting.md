@@ -14,7 +14,7 @@ In a PHP template:
 <?= $this->Highlighter->highlight('<?php $answer = 42;', ['lang' => 'php']) ?>
 ```
 
-Include the PHP opening tag so `highlight_string()` recognizes PHP syntax. `lang` sets the CSS class; it does not choose another native language parser. PHP 8.3 and later use a `div` wrapper because native highlighting already includes a `pre` element; older supported PHP uses the configured `pre` wrapper.
+Include the PHP opening tag so `highlight_string()` recognizes PHP syntax. `lang` sets the CSS class; it does not choose another native language parser. The default `div` wrapper surrounds the native highlighting output, which already includes a `pre` element.
 
 ## JavaScript highlighting
 

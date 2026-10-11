@@ -20,7 +20,7 @@ class HighlighterHelper extends Helper {
 	/**
 	 * @var array<string, mixed>
 	 */
-	protected array $_defaultConfig = [
+	protected array $defaultConfig = [
 		'highlighter' => PhpHighlighter::class,
 		'debug' => null, // Enable debug display
 	];
@@ -40,8 +40,8 @@ class HighlighterHelper extends Helper {
 		$defaults = (array)Configure::read('Highlighter');
 		parent::__construct($View, $config + $defaults);
 
-		if ($this->_config['debug'] === null) {
-			$this->_config['debug'] = Configure::read('debug');
+		if ($this->config['debug'] === null) {
+			$this->config['debug'] = Configure::read('debug');
 		}
 	}
 
@@ -59,11 +59,11 @@ class HighlighterHelper extends Helper {
 	 * @return string
 	 */
 	public function highlight(string $text, array $options = []): string {
-		if ($this->_config['debug']) {
+		if ($this->config['debug']) {
 			$this->_startTimer();
 		}
 		$highlightedText = $this->_getHighlighter()->highlight($text, $options);
-		if ($this->_config['debug']) {
+		if ($this->config['debug']) {
 			$highlightedText .= $this->_timeElapsedFormatted($this->_endTimer());
 		}
 
@@ -78,9 +78,9 @@ class HighlighterHelper extends Helper {
 			return $this->_highlighter;
 		}
 		/** @var class-string<\Markup\Highlighter\HighlighterInterface> $className */
-		$className = $this->_config['highlighter'];
+		$className = $this->config['highlighter'];
 
-		$this->_highlighter = new $className($this->_config);
+		$this->_highlighter = new $className($this->config);
 
 		return $this->_highlighter;
 	}

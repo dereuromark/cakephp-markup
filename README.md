@@ -1,7 +1,7 @@
 # Markup Plugin for CakePHP
-[![CI](https://github.com/dereuromark/cakephp-markup/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/dereuromark/cakephp-markup/actions/workflows/ci.yml?query=branch%3Amaster)
-[![codecov](https://codecov.io/gh/dereuromark/cakephp-markup/branch/master/graph/badge.svg)](https://codecov.io/gh/dereuromark/cakephp-markup)
-[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%208.2-8892BF.svg)](https://php.net/)
+[![CI](https://github.com/dereuromark/cakephp-markup/actions/workflows/ci.yml/badge.svg?branch=cake6)](https://github.com/dereuromark/cakephp-markup/actions/workflows/ci.yml?query=branch%3Acake6)
+[![codecov](https://codecov.io/gh/dereuromark/cakephp-markup/branch/cake6/graph/badge.svg)](https://codecov.io/gh/dereuromark/cakephp-markup)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%208.5-8892BF.svg)](https://php.net/)
 [![License](https://poser.pugx.org/dereuromark/cakephp-markup/license.svg)](LICENSE)
 [![Latest Stable Version](https://poser.pugx.org/dereuromark/cakephp-markup/v/stable.svg)](https://packagist.org/packages/dereuromark/cakephp-markup)
 [![Total Downloads](https://poser.pugx.org/dereuromark/cakephp-markup/d/total.svg)](https://packagist.org/packages/dereuromark/cakephp-markup)

@@ -7,7 +7,7 @@ class JsHighlighter extends Highlighter {
 	/**
 	 * @var array<string, mixed>
 	 */
-	protected array $_defaultConfig = [
+	protected array $defaultConfig = [
 		'escape' => true,
 		'tabToSpaces' => 4,
 		'templates' => [
@@ -31,7 +31,7 @@ class JsHighlighter extends Highlighter {
 	 * @return string
 	 */
 	public function highlight(string $text, array $options = []): string {
-		$options += $this->_config;
+		$options += $this->config;
 
 		$tabToSpaces = $this->getConfig('tabToSpaces');
 		$this->setConfig('tabToSpaces', $options['tabToSpaces']);

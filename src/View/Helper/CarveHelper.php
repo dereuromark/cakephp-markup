@@ -36,7 +36,7 @@ class CarveHelper extends Helper {
 	 *
 	 * @var array<string, mixed>
 	 */
-	protected array $_defaultConfig = [
+	protected array $defaultConfig = [
 		'converter' => CarveMarkup::class,
 		'debug' => null,
 		'safeMode' => true,
@@ -59,8 +59,8 @@ class CarveHelper extends Helper {
 		$defaults = (array)Configure::read('Carve');
 		parent::__construct($View, $config + $defaults);
 
-		if ($this->_config['debug'] === null) {
-			$this->_config['debug'] = Configure::read('debug');
+		if ($this->config['debug'] === null) {
+			$this->config['debug'] = Configure::read('debug');
 		}
 	}
 
@@ -78,11 +78,11 @@ class CarveHelper extends Helper {
 	 * @return string Converted HTML.
 	 */
 	public function convert(string $text, array $options = []): string {
-		if ($this->_config['debug']) {
+		if ($this->config['debug']) {
 			$this->_startTimer();
 		}
 		$html = $this->_getConverter()->convert($text, $options);
-		if ($this->_config['debug']) {
+		if ($this->config['debug']) {
 			$html .= $this->_timeElapsedFormatted($this->_endTimer());
 		}
 
@@ -121,13 +121,13 @@ class CarveHelper extends Helper {
 			return $this->_converter;
 		}
 		/** @var class-string<\Markup\Carve\CarveInterface> $className */
-		$className = $this->_config['converter'];
+		$className = $this->config['converter'];
 
 		if (!class_exists($className)) {
 			throw new InvalidArgumentException("Invalid converter class: {$className}");
 		}
 
-		$this->_converter = new $className($this->_config);
+		$this->_converter = new $className($this->config);
 
 		return $this->_converter;
 	}

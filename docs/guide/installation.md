@@ -2,12 +2,14 @@
 
 From your application's root directory:
 
+Before installing, allow development dependencies in your application's root `composer.json` with `"minimum-stability": "dev"` and `"prefer-stable": true`.
+
 ```sh
-composer require dereuromark/cakephp-markup
+composer require dereuromark/cakephp-markup:dev-cake6
 bin/cake plugin load Markup
 ```
 
-Composer checks supported PHP and CakePHP versions against [composer.json](https://github.com/dereuromark/cakephp-markup/blob/master/composer.json). The plugin does not require a database table or plugin routes.
+Composer checks supported PHP and CakePHP versions against [composer.json](https://github.com/dereuromark/cakephp-markup/blob/cake6/composer.json). The plugin does not require a database table or plugin routes.
 
 ## Choose a converter
 
