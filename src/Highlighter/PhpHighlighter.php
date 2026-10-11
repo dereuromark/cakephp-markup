@@ -9,22 +9,11 @@ class PhpHighlighter extends Highlighter {
 	 */
 	protected array $defaultConfig = [
 		'templates' => [
-			'code' => '<pre{{attr}}>{{content}}</pre>',
+			'code' => '<div{{attr}}>{{content}}</div>',
 		],
 		'prefix' => 'language-',
 		'lang' => 'txt',
 	];
-
-	/**
-	 * @param array<string, mixed> $config
-	 */
-	public function __construct(array $config = []) {
-		if (version_compare(phpversion(), '8.3', '>=')) {
-			$this->defaultConfig['templates']['code'] = '<div{{attr}}>{{content}}</div>';
-		}
-
-		parent::__construct($config);
-	}
 
 	/**
 	 * Highlight code.

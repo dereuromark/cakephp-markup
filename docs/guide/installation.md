@@ -2,6 +2,8 @@
 
 From your application's root directory:
 
+Before installing, allow development dependencies in your application's root `composer.json` with `"minimum-stability": "dev"` and `"prefer-stable": true`.
+
 ```sh
 composer require dereuromark/cakephp-markup:dev-cake6
 bin/cake plugin load Markup
