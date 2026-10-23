@@ -12,7 +12,8 @@ A CakePHP plugin to
 - quickly convert Markdown snippets.
 - quickly convert BBCode snippets.
 - quickly convert Djot snippets.
-- quickly convert Carve snippets.
+
+For Carve, use the dedicated [cakephp-carve](https://github.com/markup-carve/cakephp-carve) plugin.
 
 See [composer.json](composer.json) for supported versions and the [version map](https://github.com/dereuromark/cakephp-markup/wiki#cakephp-version-map) for older branches.
 

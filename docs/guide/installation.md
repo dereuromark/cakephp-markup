@@ -29,11 +29,7 @@ For Djot:
 composer require php-collective/djot:^0.1.30
 ```
 
-For Carve:
-
-```sh
-composer require markup-carve/carve-php:^0.1.1
-```
+For Carve, install the dedicated [cakephp-carve](https://github.com/markup-carve/cakephp-carve) plugin instead.
 
 Native PHP highlighting and the JavaScript-highlighter wrapper need no additional PHP package. The JavaScript wrapper still needs your chosen browser library and its CSS; see [Code highlighting](./highlighting.md).
 

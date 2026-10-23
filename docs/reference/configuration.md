@@ -1,6 +1,6 @@
 # Configuration
 
-Each helper reads defaults from a matching application configuration namespace: `Markdown`, `Bbcode`, `Djot`, `Carve` or `Highlighter`. Put these entries in the array returned by `config/app.php` or `config/app_local.php`, or write them before the helper loads:
+Each helper reads defaults from a matching application configuration namespace: `Markdown`, `Bbcode`, `Djot` or `Highlighter`. Put these entries in the array returned by `config/app.php` or `config/app_local.php`, or write them before the helper loads:
 
 ```php
 Configure::write('Markdown', ['debug' => false, 'max_nesting_level' => 20]);
@@ -38,6 +38,6 @@ class CustomMarkdown implements MarkdownInterface {
 }
 ```
 
-The other converter interfaces are `BbcodeInterface`, `DjotInterface` and `CarveInterface` in their respective `Markup` namespaces. Carve implementations also provide `toText()` and `toMarkdown()`. Highlighters use the `highlighter` option and implement `HighlighterInterface`.
+The other converter interfaces are `BbcodeInterface` and `DjotInterface` in their respective `Markup` namespaces. Highlighters use the `highlighter` option and implement `HighlighterInterface`.
 
 A converter's constructor receives the helper configuration. Configuration is resolved when the helper or view loads; later global changes do not update existing instances. Conversion options can still change per call.
