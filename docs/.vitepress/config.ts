@@ -19,11 +19,11 @@ const sidebar = [
 
 export default defineConfig({
   title: 'CakePHP Markup',
-  description: 'Markdown, BBCode, Djot, Carve and code highlighting in CakePHP views.',
+  description: 'Markdown, BBCode, Djot and code highlighting in CakePHP views.',
   base: '/cakephp-markup/',
   cleanUrls: true,
   lastUpdated: true,
-  srcExclude: ['README.md', 'Markdown.md', 'Bbcode.md', 'Djot.md', 'Carve.md', 'Highlighter.md'],
+  srcExclude: ['README.md', 'Markdown.md', 'Bbcode.md', 'Djot.md', 'Highlighter.md'],
   sitemap: { hostname: 'https://dereuromark.github.io/cakephp-markup/' },
   head: [['link', { rel: 'icon', href: '/cakephp-markup/favicon.svg', type: 'image/svg+xml' }]],
   themeConfig: {

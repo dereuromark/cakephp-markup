@@ -29,4 +29,4 @@ Conversion options can be supplied for a single call:
 <?= $this->Markdown->convert($source, ['max_nesting_level' => 20]) ?>
 ```
 
-For options shared by every conversion, see [Configuration](../reference/configuration.md). To use another format, load its matching helper and follow the [Markdown](./markdown.md), [BBCode](./bbcode.md), [Djot](./djot.md) or [Carve](./carve.md) guide. Their delimiters differ.
+For options shared by every conversion, see [Configuration](../reference/configuration.md). To use another format, load its matching helper and follow the [Markdown](./markdown.md), [BBCode](./bbcode.md), [Djot](./djot.md) guide. Their delimiters differ.
